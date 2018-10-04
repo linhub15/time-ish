@@ -8,10 +8,10 @@ namespace api.Controllers
     [ApiController]
     public class TimesheetsController : ControllerBase
     {
-        private readonly TimeishDbContext _dbContext;
-        public TimesheetsController(TimeishDbContext dbContext)
+        private readonly TimeishContext _context;
+        public TimesheetsController(TimeishContext context)
         {
-            _dbContext = dbContext; 
+            _context = context; 
         }
 
         // GET api/timesheets

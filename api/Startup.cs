@@ -1,11 +1,12 @@
-﻿using api.Models;
+﻿using System;
+using api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MySql.Data.EntityFrameworkCore.Extensions;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace api
 {
@@ -22,9 +23,12 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            var sqlConnectionString = Configuration.GetConnectionString("MySqlProvider");
-            services.AddDbContext<TimeishDbContext>(); // TODO: Add Dependency Injection for MySQL Database context
+            services.AddDbContextPool<TimeishContext>(
+                options => options.UseMySql(Configuration.GetConnectionString("MySqlProvider"),
+                mySqlOptions => {
+                    mySqlOptions.ServerVersion(new Version(8,0,12), ServerType.MySql);
+                })
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

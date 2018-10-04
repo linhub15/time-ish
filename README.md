@@ -2,7 +2,9 @@
 A Small Business Time Sheet Management Web App
 
 ## Project Dependencies
-* .NET Core
+* Microsoft .NET Core v2.1
+* Microsoft Entity Framework Core v2.1.4
+* MySql v8.0.12
 * Angular
 
 
