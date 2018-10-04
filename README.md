@@ -15,3 +15,13 @@ A Small Business Time Sheet Management Web App
 - [ ] PUT `/timesheets/${id}`
 - [ ] DELETE `/timesheets/${id}`
 - [ ] OAuth with Facebook
+
+
+## Local MySql Database Instance (For Development Only)
+* Username: efuser
+* Password: password
+* Connection string found in `/api/appsettings.json`
+
+## Code First Migrations
+* `dotnet ef migrations add <NAME>`
+* `dotnet ef database update`

@@ -10,12 +10,12 @@ namespace api.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime Issued { get; set; }
-        public DateTime Submitted { get; set; }
-        public DateTime Approved { get; set; }
+        public DateTime? Submitted { get; set; }
+        public DateTime? Approved { get; set; }
         public string EmployeeName { get; set; }
 
-        public PayPeriod PayPeriod { get; set; }
-        public IEnumerable<Activity> Activities { get; set; }
+        public int PayPeriodId { get; set; }
+        public virtual PayPeriod PayPeriod { get; set; }
     }
 
     public class Activity
@@ -27,7 +27,8 @@ namespace api.Models
         public string Description { get; set; }
         public decimal Amount { get; set; }
 
-        public Timesheet Timesheet { get; set; }
+        public int TimesheetId { get; set; }
+        public virtual Timesheet Timesheet { get; set; }
     }
 
     public class PayPeriod
@@ -36,7 +37,5 @@ namespace api.Models
         public int Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-
-        public IEnumerable<Timesheet> Timesheets { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers 
 {
@@ -16,9 +18,12 @@ namespace api.Controllers
 
         // GET api/timesheets
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Timesheet>> Get()
         {
-            return new string[] {"1","2"};
+            var Timesheets = _context.Timesheets
+                .Include(Timesheet => Timesheet.PayPeriod)
+                .ToList();
+            return Timesheets;
         }
         
         // GET api/timesheets/5
