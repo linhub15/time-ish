@@ -9,8 +9,8 @@ using api.Models;
 namespace api.Migrations
 {
     [DbContext(typeof(TimeishContext))]
-    [Migration("20181004170144_1")]
-    partial class _1
+    [Migration("20181004192952_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,13 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("End");
+                    b.Property<decimal>("Amount");
 
-                    b.Property<DateTime>("Start");
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Hours");
 
                     b.Property<int?>("TimesheetId");
 
@@ -37,6 +41,20 @@ namespace api.Migrations
                     b.ToTable("Activities");
                 });
 
+            modelBuilder.Entity("api.Models.PayPeriod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("End");
+
+                    b.Property<DateTime>("Start");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PayPeriod");
+                });
+
             modelBuilder.Entity("api.Models.Timesheet", b =>
                 {
                     b.Property<int>("Id")
@@ -44,11 +62,17 @@ namespace api.Migrations
 
                     b.Property<DateTime>("Approved");
 
+                    b.Property<string>("EmployeeName");
+
                     b.Property<DateTime>("Issued");
+
+                    b.Property<int?>("PayPeriodId");
 
                     b.Property<DateTime>("Submitted");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PayPeriodId");
 
                     b.ToTable("Timesheets");
                 });
@@ -58,6 +82,13 @@ namespace api.Migrations
                     b.HasOne("api.Models.Timesheet", "Timesheet")
                         .WithMany("Activities")
                         .HasForeignKey("TimesheetId");
+                });
+
+            modelBuilder.Entity("api.Models.Timesheet", b =>
+                {
+                    b.HasOne("api.Models.PayPeriod", "PayPeriod")
+                        .WithMany("Timesheets")
+                        .HasForeignKey("PayPeriodId");
                 });
 #pragma warning restore 612, 618
         }
