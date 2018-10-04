@@ -7,16 +7,12 @@ A Small Business Time Sheet Management Web App
 * MySql v8.0.12
 * Angular
 
-
-## Prototype API
-- [ ] OAuth with Facebook
-
-
-## Local MySql Database Instance (For Development Only)
+## Dev DB
+### MySql Database Instance (Dev)
 * Username: efuser
 * Password: password
 * Connection string found in `/api/appsettings.json`
 
-## Code First Migrations
+### Entity Framework Code First Migration Commands
 * `dotnet ef migrations add <NAME>`
 * `dotnet ef database update`
