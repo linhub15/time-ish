@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
-    public class Timesheet
+    public class TimeSheet
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -28,7 +28,7 @@ namespace api.Models
         public string Description { get; set; }
         public decimal Amount { get; set; }
 
-        public int TimesheetId { get; set; }
+        public int TimeSheetId { get; set; }
     }
 
     public class PayPeriod

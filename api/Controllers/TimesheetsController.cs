@@ -8,59 +8,59 @@ namespace api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TimesheetsController : ControllerBase
+    public class TimeSheetsController : ControllerBase
     {
         private readonly TimeishContext _context;
-        public TimesheetsController(TimeishContext context)
+        public TimeSheetsController(TimeishContext context)
         {
             _context = context;
         }
 
-        // GET api/timesheets
+        // GET api/TimeSheets
         [HttpGet]
-        public ActionResult<IEnumerable<Timesheet>> Get()
+        public ActionResult<IEnumerable<TimeSheet>> Get()
         {
-            return _context.Timesheets
+            return _context.TimeSheets
                 .Include(t => t.PayPeriod)
                 .Include(t => t.Activities)
                 .ToList();
         }
         
-        // GET api/timesheets/5
+        // GET api/TimeSheets/5
         [HttpGet("{id}")]
-        public ActionResult<Timesheet> Get(int id)
+        public ActionResult<TimeSheet> Get(int id)
         {
-            return _context.Timesheets
+            return _context.TimeSheets
                 .Include(t => t.PayPeriod)
                 .Include(t => t.Activities)
                 .SingleOrDefault(t => t.Id == id);
                 
         }
 
-         // POST api/timesheets
+         // POST api/TimeSheets
         [HttpPost]
-        public void Post([FromBody] Timesheet timesheet)
+        public void Post([FromBody] TimeSheet TimeSheet)
         {
-            _context.Timesheets.Add(timesheet);
+            _context.TimeSheets.Add(TimeSheet);
             _context.SaveChanges();
         }
 
-        // PUT api/timesheets/5
+        // PUT api/TimeSheets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Timesheet timesheet)
+        public void Put(int id, [FromBody] TimeSheet TimeSheet)
         {
-            timesheet.Id = id; //URL ID overrides PUT request Body
-            _context.Timesheets.Update(timesheet);
+            TimeSheet.Id = id; //URL ID overrides PUT request Body
+            _context.TimeSheets.Update(TimeSheet);
             _context.SaveChanges();
         }
 
-        // DELETE api/timesheets/5
+        // DELETE api/TimeSheets/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var timesheet = _context.Timesheets
+            var TimeSheet = _context.TimeSheets
                 .SingleOrDefault(t => t.Id == id);
-            _context.Timesheets.Remove(timesheet);
+            _context.TimeSheets.Remove(TimeSheet);
             _context.SaveChanges();
         }
     } 
