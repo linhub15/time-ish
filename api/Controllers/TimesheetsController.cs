@@ -20,35 +20,46 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Timesheet>> Get()
         {
-            var Timesheets = _context.Timesheets
-                .Include(Timesheet => Timesheet.PayPeriod)
+            return _context.Timesheets
+                .Include(t => t.PayPeriod)
                 .ToList();
-            return Timesheets;
         }
         
         // GET api/timesheets/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Timesheet> Get(int id)
         {
-            return $"id: { id }";
+            return _context.Timesheets
+                .Include(t => t.PayPeriod)
+                .SingleOrDefault(t => t.Id == id);
+                
         }
 
          // POST api/timesheets
         [HttpPost]
-        public void Post([FromBody] string timesheet)
+        public void Post([FromBody] Timesheet timesheet)
         {
+            _context.Timesheets.Add(timesheet);
+            _context.SaveChanges();
         }
 
         // PUT api/timesheets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string timesheet)
+        public void Put(int id, [FromBody] Timesheet timesheet)
         {
+            timesheet.Id = id; //URL ID overrides PUT request Body
+            _context.Timesheets.Update(timesheet);
+            _context.SaveChanges();
         }
 
         // DELETE api/timesheets/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var timesheet = _context.Timesheets
+                .SingleOrDefault(t => t.Id == id);
+            _context.Timesheets.Remove(timesheet);
+            _context.SaveChanges();
         }
     } 
 }

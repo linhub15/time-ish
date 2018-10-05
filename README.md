@@ -7,6 +7,11 @@ A Small Business Time Sheet Management Web App
 * MySql v8.0.12
 * Angular
 
+
+## Tools
+* VSCode - Editor
+* Postman - API Testing
+
 ## Dev DB
 ### MySql Database Instance (Dev)
 * Username: efuser
