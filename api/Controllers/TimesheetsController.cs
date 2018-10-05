@@ -39,18 +39,18 @@ namespace api.Controllers
 
          // POST api/TimeSheets
         [HttpPost]
-        public void Post([FromBody] TimeSheet TimeSheet)
+        public void Post([FromBody] TimeSheet timeSheet)
         {
-            _context.TimeSheets.Add(TimeSheet);
+            _context.TimeSheets.Add(timeSheet);
             _context.SaveChanges();
         }
 
         // PUT api/TimeSheets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] TimeSheet TimeSheet)
+        public void Put(int id, [FromBody] TimeSheet timeSheet)
         {
-            TimeSheet.Id = id; //URL ID overrides PUT request Body
-            _context.TimeSheets.Update(TimeSheet);
+            timeSheet.Id = id; //URL ID overrides PUT request Body
+            _context.TimeSheets.Update(timeSheet);
             _context.SaveChanges();
         }
 
@@ -58,9 +58,9 @@ namespace api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var TimeSheet = _context.TimeSheets
+            var timeSheet = _context.TimeSheets
                 .SingleOrDefault(t => t.Id == id);
-            _context.TimeSheets.Remove(TimeSheet);
+            _context.TimeSheets.Remove(timeSheet);
             _context.SaveChanges();
         }
     } 
