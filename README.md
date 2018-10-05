@@ -3,7 +3,7 @@ A Small Business Time Sheet Management Web App
 
 Before building the project ensure all dependencies are installed.
 First build the Angular App `ng build --prod` this will build the static files into `api/wwwroot`
-Then run the C# debugger in `/api/` this will serve the Api and the static files
+Then run the C# debugger. The VSCode launch.json should auto build and run the C# web api and serve the static angular app.
 
 ## Project Dependencies
 * Microsoft .NET Core v2.1
