@@ -1,15 +1,21 @@
 # Time-ish
 A Small Business Time Sheet Management Web App
 
+Before building the project ensure all dependencies are installed.
+First build the Angular App `ng build --prod` this will build the static files into `api/wwwroot`
+Then run the C# debugger in `/api/` this will serve the Api and the static files
+
 ## Project Dependencies
 * Microsoft .NET Core v2.1
 * Microsoft Entity Framework Core v2.1.4
 * MySql v8.0.12
-* Angular
+* Node.js v8.11.4
+* Angular Cli v6.2.4
 
 
 ## Tools
 * VSCode - Editor
+* MySql Workbench 8 - Database GUI
 * Postman - API Testing
 
 ## Dev DB

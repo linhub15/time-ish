@@ -13,7 +13,7 @@ namespace api.Controllers
         private readonly TimeishContext _context;
         public TimesheetsController(TimeishContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
         // GET api/timesheets
