@@ -25,5 +25,9 @@ Then run the C# debugger. The VSCode launch.json should auto build and run the C
 * Connection string found in `/api/appsettings.json`
 
 ### Entity Framework Code First Migration Commands
+* To Clear database
+  * Drop all tables in MySql work bench
+  * Delete /app/Migrations
+  * run commands below
 * `dotnet ef migrations add <NAME>`
 * `dotnet ef database update`
