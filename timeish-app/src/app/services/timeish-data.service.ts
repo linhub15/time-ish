@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { TimeSheet } from '../models/time-sheet';
 
@@ -31,6 +32,18 @@ export class TimeishDataService {
   }
 
   // POST
+  postTimeSheet(timeSheet: TimeSheet): Observable<TimeSheet> {
+    // How to do error catching?
+    return this.http.post<TimeSheet>(this.timeSheetUrl, timeSheet);
+  }
+
   // PUT
+  putTimeSheet(timeSheet: TimeSheet): Observable<TimeSheet> {
+    return this.http.put<TimeSheet>(this.timeSheetUrl.concat(timeSheet.id.toString()), timeSheet);
+  }
+
   // DELETE
+  deleteTimeSheet(timeSheetId: number): Observable<object> {
+    return this.http.delete(this.timeSheetUrl.concat(timeSheetId.toString()));
+  }
 }
