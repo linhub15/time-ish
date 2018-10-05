@@ -14,8 +14,9 @@ namespace api.Models
         public DateTime? Approved { get; set; }
         public string EmployeeName { get; set; }
 
-        public int PayPeriodId { get; set; }
+        public int? PayPeriodId { get; set; }
         public virtual PayPeriod PayPeriod { get; set; }
+        public virtual IEnumerable<Activity> Activities { get; set;}
     }
 
     public class Activity
@@ -28,7 +29,6 @@ namespace api.Models
         public decimal Amount { get; set; }
 
         public int TimesheetId { get; set; }
-        public virtual Timesheet Timesheet { get; set; }
     }
 
     public class PayPeriod

@@ -22,6 +22,7 @@ namespace api.Controllers
         {
             return _context.Timesheets
                 .Include(t => t.PayPeriod)
+                .Include(t => t.Activities)
                 .ToList();
         }
         
@@ -31,6 +32,7 @@ namespace api.Controllers
         {
             return _context.Timesheets
                 .Include(t => t.PayPeriod)
+                .Include(t => t.Activities)
                 .SingleOrDefault(t => t.Id == id);
                 
         }

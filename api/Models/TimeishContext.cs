@@ -25,6 +25,10 @@ namespace api.Models
                 new Timesheet { Id = 3, Issued = DateTime.Now, EmployeeName = "Lunette Clowne", PayPeriodId = 1},
                 new Timesheet { Id = 4, Issued = DateTime.Now, EmployeeName = "Peter Parker", PayPeriodId = 2}
             );
+            modelBuilder.Entity<Activity>().HasData(
+                new Activity { Id = 1, Date = DateTime.Today, Amount = 25, Description = "Teaching Dance", Hours = 1, TimesheetId = 1 },
+                new Activity { Id = 2, Date = DateTime.Today, Amount = 25, Description = "Teaching Kids", Hours = 1, TimesheetId = 1 }
+            );
         }
     }
 }
