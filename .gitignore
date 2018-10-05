@@ -6,7 +6,7 @@ project.lock.json
 nupkg/
 
 # Visual Studio Code
-.vscode
+# .vscode       ## Allow launch.json, settings,json, tasks.json to be shared
 
 # User-specific files
 *.suo
