@@ -2,26 +2,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { TimeSheetListComponent } from './time-sheet-list/time-sheet-list.component';
 import { HttpClientModule } from '@angular/common/http';
+
+import { TimeSheetListComponent } from './time-sheet-list/time-sheet-list.component';
 import { TimeSheetListItemComponent } from './time-sheet-list-item/time-sheet-list-item.component';
+import { TimeSheetComponent } from './time-sheet/time-sheet.component';
+import { ActivityComponent } from './activity/activity.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule} from '@angular/material';
+import {MatButtonModule, 
+  MatCardModule, 
+  MatFormFieldModule, 
+  MatInputModule, 
+  MatDatepickerModule, 
+  MatExpansionModule,
+  MatNativeDateModule} from '@angular/material';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TimeSheetListComponent,
-    TimeSheetListItemComponent
+    TimeSheetListItemComponent,
+    TimeSheetComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule, 
+    MatFormFieldModule, 
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

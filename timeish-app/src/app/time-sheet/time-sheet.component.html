@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title>
+    {{timeSheet.employeeName}} - September Time Sheet
+  </mat-card-title>
+  <mat-card-content>
+    <mat-accordion>
+        <app-activity *ngFor="let activity of activities"
+        [activity]="activity"></app-activity>
+    </mat-accordion>
+    <div *ngIf="!submitted">
+        <button mat-raised-button color="warn"
+        (click)="addActivity()">
+        Add Activity</button>
+    <button *ngIf="inEditMode" 
+        (click)="save()"
+        mat-raised-button>Save</button>
+    <button *ngIf="!inEditMode && activities.length > 0"
+        mat-raised-button color="primary"
+        (click)="submit()">Submit</button>
+    </div>
+    
+  </mat-card-content>
+</mat-card>

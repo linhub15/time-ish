@@ -1,0 +1,30 @@
+<mat-expansion-panel>
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Date shows up here
+      </mat-panel-title>
+      <mat-panel-description>
+        $80.00 (this is calculated field based on hours)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Hours" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Description" type="text">
+    </mat-form-field>
+  
+</mat-expansion-panel>
+
+
+
