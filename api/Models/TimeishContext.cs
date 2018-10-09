@@ -9,6 +9,7 @@ namespace api.Models
             : base(options)
         { }
 
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<PayPeriod> PayPeriods { get; set; }
