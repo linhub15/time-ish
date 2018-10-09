@@ -1,4 +1,5 @@
 <p>
   time-sheet-list works!
-  {{ timeSheets }}
+  <app-time-sheet-list-item *ngFor="let timeSheet of timeSheets"
+    [timeSheet]="timeSheet"></app-time-sheet-list-item>
 </p>
