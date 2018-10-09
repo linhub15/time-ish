@@ -19,11 +19,12 @@ export class TimeSheetComponent implements OnInit {
   ngOnInit() {
     this.inEditMode = false;
     this.submitted = false; // TODO: Get this from the database
+    // TODO: activities should be populated from database
   }
 
   addActivity() {
     this.inEditMode = true;
-    this.activities.push(new Activity());
+    this.activities.push(new Activity(this.timeSheet.payPeriodId));
   }
   removeActivity() { }
   save() {
