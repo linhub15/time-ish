@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TimeishDataService } from './timeish-data.service';
+import { ApiService } from './api.service';
 
-describe('TimeishDataService', () => {
+describe('ApiService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TimeishDataService = TestBed.get(TimeishDataService);
+    const service: ApiService = TestBed.get(ApiService);
     expect(service).toBeTruthy();
   });
 });

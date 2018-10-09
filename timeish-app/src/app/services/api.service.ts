@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { TimeSheet } from '../models/time-sheet';
@@ -8,16 +7,15 @@ import { TimeSheet } from '../models/time-sheet';
 @Injectable({
   providedIn: 'root'
 })
-export class TimeishDataService {
+export class ApiService {
   
   protected timeSheetUrl: string;
   // Business Logic service for the app
-  constructor(private http: HttpClient, url: string) {
+  constructor(private http: HttpClient) {
     // TODO: construct these URLs so automatic check for prod/dev
-    //      Maybe there's a base URL somewhere to use
-    this.timeSheetUrl = url ? url : 'https://localhost:5001/api/timesheets/';
+    //      Maybe I should put base URL somewhere else
+    this.timeSheetUrl = 'https://localhost:5001/api/timesheets/';
   }
-  
   // No Idea what i'm doing here
   // Possibly add methods to call API and use them from each component
 
