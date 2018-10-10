@@ -8,14 +8,5 @@ import { TimeSheet } from './models/time-sheet';
 })
 export class AppComponent {
   title = 'timeish-app';
-  staticTimeSheet: TimeSheet;
-  ngOnInit() {
-    // Test data for template render
-    this.staticTimeSheet = new TimeSheet();
-    this.staticTimeSheet.id=1;
-    this.staticTimeSheet.employeeName="Alice J",
-    this.staticTimeSheet.activities=[],
-    this.staticTimeSheet.issued=new Date();
-    this.staticTimeSheet.payPeriodId=1;
-  }
+  ngOnInit() { }
 }

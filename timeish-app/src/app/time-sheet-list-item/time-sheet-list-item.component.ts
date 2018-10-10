@@ -18,9 +18,8 @@ export class TimeSheetListItemComponent implements OnInit {
     this.totalAmount = 35.00;
     this.status = "submitted";
   }
-
-  name(): string {
-    return this.timeSheet.employeeName;
+  fullName():string {
+    return this.timeSheet.employee.firstName
+        .concat(' ', this.timeSheet.employee.lastName);
   }
-
 }

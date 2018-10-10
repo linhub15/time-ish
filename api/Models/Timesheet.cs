@@ -12,8 +12,7 @@ namespace api.Models
         public DateTime Issued { get; set; }
         public DateTime? Submitted { get; set; }
         public DateTime? Approved { get; set; }
-        public string EmployeeName { get; set; }
-        public int? EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         public int? PayPeriodId { get; set; }
 
         public virtual Employee Employee{ get; set; }

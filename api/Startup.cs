@@ -2,6 +2,7 @@
 using api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,6 +52,21 @@ namespace api
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
+            // ensures index.html is served for any requests with a path other than "/"
+            // prevents 404 when user refreshes browser
+            app.Use(async (context, next) => 
+            {
+                if (context.Request.Path.HasValue && context.Request.Path.Value != "/")
+                {
+                    context.Response.ContentType = "text/html";
+                    await context.Response.SendFileAsync(
+                        env.ContentRootFileProvider.GetFileInfo("wwwroot/index.html")
+                    );
+                    return;
+                }
+
+                await next();
+            });
         }
     }
 }

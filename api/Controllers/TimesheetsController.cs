@@ -20,9 +20,11 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<TimeSheet>> Get()
         {
+            
             return _context.TimeSheets
                 .Include(t => t.PayPeriod)
                 .Include(t => t.Activities)
+                .Include(t => t.Employee)   // use name & HourlyPay
                 .ToList();
         }
         
@@ -33,6 +35,7 @@ namespace api.Controllers
             return _context.TimeSheets
                 .Include(t => t.PayPeriod)
                 .Include(t => t.Activities)
+                .Include(t => t.Employee)   // use name & HourlyPay
                 .SingleOrDefault(t => t.Id == id);
                 
         }
