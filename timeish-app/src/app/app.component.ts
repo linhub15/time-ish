@@ -11,15 +11,11 @@ export class AppComponent {
   staticTimeSheet: TimeSheet;
   ngOnInit() {
     // Test data for template render
-    this.staticTimeSheet = {
-      id: 1,
-      employeeName: "Alice J",
-      activities: [],
-      issued: new Date(),
-      payPeriodId: 1,
-      submitted: null,
-      approved: null,
-      payPeriod: null
-    }
+    this.staticTimeSheet = new TimeSheet();
+    this.staticTimeSheet.id=1;
+    this.staticTimeSheet.employeeName="Alice J",
+    this.staticTimeSheet.activities=[],
+    this.staticTimeSheet.issued=new Date();
+    this.staticTimeSheet.payPeriodId=1;
   }
 }

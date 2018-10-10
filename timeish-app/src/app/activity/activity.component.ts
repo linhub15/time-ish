@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Activity } from '../models/activity';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-activity',
@@ -12,6 +13,9 @@ export class ActivityComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
+  calculatePay(): void {
+    this.activity.pay = 25 * this.activity.hours;
+  }
 }

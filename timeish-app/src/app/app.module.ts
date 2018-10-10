@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { ActivityComponent } from './activity/activity.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, 
+import {MatButtonModule,
   MatCardModule, 
   MatFormFieldModule, 
   MatInputModule, 
@@ -30,6 +31,7 @@ import {MatButtonModule,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,

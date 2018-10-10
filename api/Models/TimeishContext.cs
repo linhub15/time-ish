@@ -27,8 +27,8 @@ namespace api.Models
                 new TimeSheet { Id = 4, Issued = DateTime.Now, EmployeeName = "Peter Parker", PayPeriodId = 2}
             );
             modelBuilder.Entity<Activity>().HasData(
-                new Activity { Id = 1, Date = DateTime.Today, Amount = 25, Description = "Teaching Dance", Hours = 1, TimeSheetId = 1 },
-                new Activity { Id = 2, Date = DateTime.Today, Amount = 25, Description = "Teaching Kids", Hours = 1, TimeSheetId = 1 }
+                new Activity { Id = 1, Date = DateTime.Today, Pay = 25, Description = "Teaching Dance", Hours = 1, TimeSheetId = 1 },
+                new Activity { Id = 2, Date = DateTime.Today, Pay = 25, Description = "Teaching Kids", Hours = 1, TimeSheetId = 1 }
             );
         }
     }
