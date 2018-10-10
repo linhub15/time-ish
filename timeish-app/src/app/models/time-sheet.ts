@@ -14,7 +14,7 @@ export class TimeSheet {
     totalHours(): number {
         let hours: number = 0;
         this.activities.forEach(activity => {
-            hours += activity.hours;
+            hours += isNaN(activity.hours) ? 0 : activity.hours;
         });
         return hours;
     }
@@ -22,7 +22,7 @@ export class TimeSheet {
     totalPay(): number {
         let pay: number = 0;
         this.activities.forEach(activity => {
-            pay += activity.pay;
+            pay += isNaN(activity.pay) ? 0 : activity.pay;
         })
         return pay;
     }

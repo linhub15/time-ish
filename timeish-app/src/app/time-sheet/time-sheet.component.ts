@@ -11,7 +11,7 @@ export class TimeSheetComponent implements OnInit {
 
   inEditMode: boolean;
   submitted: boolean;
-  activities: Activity[] = [];
+  totalHours: number;   // Without this new Activity causes NaN
   @Input() timeSheet: TimeSheet;
 
   constructor() { }
@@ -24,7 +24,7 @@ export class TimeSheetComponent implements OnInit {
 
   addActivity() {
     this.inEditMode = true;
-    this.activities.push(new Activity(this.timeSheet.payPeriodId));
+    this.timeSheet.activities.push(new Activity(this.timeSheet.payPeriodId));
   }
   removeActivity() { }
   save() {
