@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TimeSheet } from '../models/time-sheet';
+import { TimeSheet } from '../models/time-sheet.model';
 
 @Component({
   selector: 'app-time-sheet-list-item',
@@ -17,9 +17,5 @@ export class TimeSheetListItemComponent implements OnInit {
   ngOnInit() {
     this.totalAmount = 35.00;
     this.status = "submitted";
-  }
-  fullName():string {
-    return this.timeSheet.employee.firstName
-        .concat(' ', this.timeSheet.employee.lastName);
   }
 }

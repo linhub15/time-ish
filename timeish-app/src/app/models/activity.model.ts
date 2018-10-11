@@ -1,4 +1,6 @@
-export class Activity {
+import { Deserializable } from "./deserializable.model";
+
+export class Activity implements Deserializable{
     id: number;
     date: Date;
     hours: number;
@@ -6,10 +8,11 @@ export class Activity {
     pay: number;
     timeSheetId: number;
 
-    constructor(id: number) {
-        this.id = id;
-    }
+    constructor() { }
 
+    deserialize(input: any) {
+        return Object.assign(this, input);
+    }
     // pay(hourlyPay: number): number {
     //     return hourlyPay * this.hours;
     // }

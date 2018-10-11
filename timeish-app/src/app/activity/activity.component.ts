@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Activity } from '../models/activity';
-import { NgModel } from '@angular/forms';
+import { Activity } from '../models/activity.model';
 
 @Component({
   selector: 'app-activity',

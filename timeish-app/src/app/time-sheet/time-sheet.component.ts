@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TimeSheet } from '../models/time-sheet';
-import { Activity } from '../models/activity';
+import { TimeSheet } from '../models/time-sheet.model';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
@@ -29,14 +28,15 @@ export class TimeSheetComponent implements OnInit {
   getTimeSheet(): void {
     // the (+) operator converts string to number
     const id: number = +this.route.snapshot.paramMap.get('id');
-    this.apiService
-        .getTimeSheet(id)
-        .subscribe(t => this.timeSheet = new TimeSheet(t));
+    this.apiService.getTimeSheet(id)
+        .subscribe(timeSheet => {
+          this.timeSheet = new TimeSheet().deserialize(timeSheet);
+        });
   }
 
   addActivity() {
     this.inEditMode = true;
-    this.timeSheet.activities.push(new Activity(this.timeSheet.payPeriodId));
+    this.timeSheet.addActivity();
   }
 
   removeActivity() { }

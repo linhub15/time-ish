@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { TimeSheet } from '../models/time-sheet';
+import { TimeSheet } from '../models/time-sheet.model';
 
 @Injectable({
   providedIn: 'root'

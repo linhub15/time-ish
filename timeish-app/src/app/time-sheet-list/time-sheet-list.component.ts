@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { TimeSheet } from '../models/time-sheet';
+import { TimeSheet } from '../models/time-sheet.model';
 
 @Component({
   selector: 'app-time-sheet-list',
@@ -19,7 +19,12 @@ export class TimeSheetListComponent implements OnInit {
   }
 
   getTimeSheets(): void {
+    this.timeSheets = [];
     this.apiService.getTimeSheets()
-      .subscribe(ts => this.timeSheets = ts);
+      .subscribe(timeSheets => {
+        timeSheets.forEach(sheet => {
+          this.timeSheets.push(new TimeSheet().deserialize(sheet))
+        })
+      });
   }
 }

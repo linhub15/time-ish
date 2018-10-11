@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TimeSheet } from './models/time-sheet';
 
 @Component({
   selector: 'app-root',
