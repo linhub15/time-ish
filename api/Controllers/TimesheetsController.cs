@@ -50,11 +50,12 @@ namespace api.Controllers
 
         // PUT api/TimeSheets/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] TimeSheet timeSheet)
+        public ActionResult<TimeSheet> Put(int id, [FromBody] TimeSheet timeSheet)
         {
             timeSheet.Id = id; //URL ID overrides PUT request Body
             _context.TimeSheets.Update(timeSheet);
             _context.SaveChanges();
+            return _context.TimeSheets.SingleOrDefault(t => t.Id == id);
         }
 
         // DELETE api/TimeSheets/5
@@ -66,5 +67,14 @@ namespace api.Controllers
             _context.TimeSheets.Remove(timeSheet);
             _context.SaveChanges();
         }
-    } 
+
+        [HttpDelete("activity/{id}")]
+        public void DeleteActivity(int id)
+        {
+            var activity = _context.Activities
+                .SingleOrDefault(a => a.Id == id);
+            _context.Activities.Remove(activity);
+            _context.SaveChanges();
+        }
+    }
 }

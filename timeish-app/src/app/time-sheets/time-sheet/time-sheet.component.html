@@ -11,13 +11,12 @@
     </mat-accordion>
     <div *ngIf="!submitted">
       <button mat-raised-button color="warn"
-          (click)="addActivity()">
-          Add Activity</button>
-      <button *ngIf="inEditMode" 
-          (click)="save()"
-          mat-raised-button>Save</button>
-      <button *ngIf="!inEditMode && timeSheet?.activities.length > 0"
-          mat-raised-button color="primary"
+          (click)="addActivity()">Add Activity</button>
+      <button mat-raised-button
+          (click)="save()">Save</button>
+      <button mat-raised-button
+          (click)="removeActivity()">remove Last Activity</button>
+      <button mat-raised-button color="primary"
           (click)="submit()">Submit</button>
     </div>
     

@@ -39,13 +39,23 @@ export class TimeSheetComponent implements OnInit {
     this.timeSheet.addActivity();
   }
 
-  removeActivity() { }
+  removeActivity() {
+    this.timeSheet.activities.pop();
+    //this.save();
+  }
 
   save() {
     this.inEditMode = false;
+    this.apiService.putTimeSheet(this.timeSheet)
+        .subscribe(timeSheet => {
+          this.timeSheet.deserialize(timeSheet);
+        });
   }
 
   submit() {
+    // Are you sure you want to submit? No more changes can be made
     this.submitted = true;
+    this.timeSheet.submitted = new Date();
+    this.apiService.putTimeSheet(this.timeSheet);
   }
 }
