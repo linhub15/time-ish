@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TimeSheet } from '../models/time-sheet.model';
+import { TimeSheet } from '../../models/time-sheet.model';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../services/api.service';
+import { TimeSheetsService } from '../time-sheets.service';
 
 @Component({
   selector: 'app-time-sheet',
@@ -16,7 +16,7 @@ export class TimeSheetComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService,
+    private apiService: TimeSheetsService,
   ) { }
 
   ngOnInit() {

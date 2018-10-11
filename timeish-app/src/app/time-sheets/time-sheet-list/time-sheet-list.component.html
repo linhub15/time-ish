@@ -1,0 +1,9 @@
+<p>
+  time-sheet-list works!
+</p>
+<div *ngFor="let timeSheet of timeSheets">
+  <mat-card routerLink="/timesheets/{{timeSheet.id}}">
+    <mat-card-title>{{timeSheet.employee.fullName()}}</mat-card-title>
+    <mat-card-content>${{timeSheet.totalPay()}} - Put Status Here</mat-card-content>
+  </mat-card>
+</div>

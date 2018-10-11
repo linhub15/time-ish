@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { TimeSheet } from '../models/time-sheet.model';
+import { TimeSheetsService } from '../time-sheets.service';
+import { TimeSheet } from '../../models/time-sheet.model';
 
 @Component({
   selector: 'app-time-sheet-list',
   templateUrl: './time-sheet-list.component.html',
-  styleUrls: ['./time-sheet-list.component.css'],
-  providers: [ApiService]
+  styleUrls: ['./time-sheet-list.component.css']
 })
 export class TimeSheetListComponent implements OnInit {
 
   timeSheets: TimeSheet[];
   
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:TimeSheetsService) { }
 
   ngOnInit() {
     this.getTimeSheets();
