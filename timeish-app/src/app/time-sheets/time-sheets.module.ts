@@ -7,13 +7,16 @@ import { TimeSheetListComponent } from './time-sheet-list/time-sheet-list.compon
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { ActivityComponent } from './activity/activity.component';
 import { TimeSheetsRoutingModule } from './time-sheets-routing.module';
+import { AddTimeSheetDialogComponent } from './add-time-sheet-dialog/add-time-sheet-dialog.component';
 
 @NgModule({
   imports: [ CommonModule, SharedModule, TimeSheetsRoutingModule ],
+  entryComponents: [AddTimeSheetDialogComponent],
   declarations: [
     TimeSheetListComponent,
     TimeSheetComponent,
-    ActivityComponent
+    ActivityComponent,
+    AddTimeSheetDialogComponent,
   ]
 })
 export class TimeSheetsModule { }

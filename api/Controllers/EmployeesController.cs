@@ -18,7 +18,7 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Employee>> Get()
         {
-            return null;
+            return _context.Employees;
         }
     }
 }

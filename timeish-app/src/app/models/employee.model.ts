@@ -11,7 +11,6 @@ export class Employee implements Deserializable{
     deserialize(input: any) {
         return Object.assign(this, input);
     }
-
     fullName(): string {
         return this.firstName.concat(' ', this.lastName);
     }

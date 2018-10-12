@@ -42,10 +42,14 @@ namespace api.Controllers
 
          // POST api/TimeSheets
         [HttpPost]
-        public void Post([FromBody] TimeSheet timeSheet)
+        public ActionResult<TimeSheet> Post([FromBody] TimeSheet timeSheet)
         {
             _context.TimeSheets.Add(timeSheet);
             _context.SaveChanges();
+            return _context.TimeSheets
+                .Include(t => t.Employee)
+                .Include(t => t.Activities)
+                .SingleOrDefault(t => t.Id == timeSheet.Id);
         }
 
         // PUT api/TimeSheets/5
