@@ -68,7 +68,7 @@ namespace api.Controllers
             _context.SaveChanges();
         }
 
-        [HttpDelete("activity/{id}")]
+        [HttpDelete("activities/{id}")]
         public void DeleteActivity(int id)
         {
             var activity = _context.Activities

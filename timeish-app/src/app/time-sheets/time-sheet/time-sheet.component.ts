@@ -39,9 +39,16 @@ export class TimeSheetComponent implements OnInit {
     this.timeSheet.addActivity();
   }
 
-  removeActivity() {
-    this.timeSheet.activities.pop();
-    //this.save();
+  deleteActivity(activityId: number) {
+    // Removes the activity component from the view
+    let index = this.timeSheet.activities
+        .findIndex(activity => activity.id == activityId)
+    this.timeSheet.activities.splice(index, 1);
+
+    // "Add Activity" doesn't insert new Activity in DB
+    // Can't delete what doesn't exist
+    if (!activityId) { return } 
+    this.apiService.deleteActivity(activityId).subscribe();
   }
 
   save() {

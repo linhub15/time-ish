@@ -9,10 +9,14 @@ import { TimeSheet } from '../models/time-sheet.model';
 })
 export class TimeSheetsService {
   
-  private _timeSheetUrl: string;
+  readonly _apiUrl: string;
+  readonly _timeSheetUrl: string;
+  readonly _activityUrl: string;
 
   constructor(private http: HttpClient) {
-    this._timeSheetUrl = 'https://localhost:5001/api/timesheets/';
+    this._apiUrl = 'https://localhost:5001/api/'
+    this._timeSheetUrl = this._apiUrl + 'timesheets/';
+    this._activityUrl = this._timeSheetUrl + 'activities/'
   }
   
 
@@ -40,5 +44,10 @@ export class TimeSheetsService {
   // DELETE
   deleteTimeSheet(timeSheetId: number): Observable<object> {
     return this.http.delete(this._timeSheetUrl.concat(timeSheetId.toString()));
+  }
+
+  // DELETE
+  deleteActivity(activityId: number): Observable<object> {
+    return this.http.delete(this._activityUrl.concat(activityId.toString()));
   }
 }

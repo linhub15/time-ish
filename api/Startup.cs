@@ -21,14 +21,19 @@ namespace api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime
+        // Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(); // Used for Development testing
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             // Prevent self reference exception when using LINQ to get a collection
                 .AddJsonOptions(options => {
                      options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
+
+
             services.AddDbContextPool<TimeishContext>(
                 options => options.UseMySql(Configuration.GetConnectionString("MySqlProvider"),
                 mySqlOptions => {
@@ -43,13 +48,22 @@ namespace api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                 // TODO: Remove in prod - For Development only
+                app.UseCors(builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                });
             }
             else
             {
                 app.UseHsts();
             }
+
+            app.UseStaticFiles();   // Allows wwwroot files to be served
             app.UseDefaultFiles();
-            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
             // ensures index.html is served for any requests with a path other than "/"
@@ -64,7 +78,6 @@ namespace api
                     );
                     return;
                 }
-
                 await next();
             });
         }
