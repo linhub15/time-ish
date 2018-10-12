@@ -17,6 +17,7 @@ Then run the C# debugger. The VSCode launch.json should auto build and run the C
 * VSCode - Editor
 * MySql Workbench 8 - Database GUI
 * Postman - API Testing
+* Chrome - when using `ng serve` make sure to enable `chrome://flags/#allow-insecure-localhost`
 
 ## Dev DB
 ### MySql Database Instance (Dev)
