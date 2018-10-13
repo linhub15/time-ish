@@ -32,6 +32,11 @@ export class TimeSheetListComponent implements OnInit {
         })
       });
   }
+  deleteTimeSheet(timeSheet: TimeSheet): void {
+    const id = this.timeSheets.indexOf(timeSheet);
+    this.timeSheets.splice(id, 1);
+    this.apiService.deleteTimeSheet(timeSheet.id);
+  }
 
   openDialog(): void {
     const employees: Employee[] = [];

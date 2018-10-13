@@ -42,8 +42,9 @@ export class TimeSheetsService {
   }
 
   // DELETE
-  deleteTimeSheet(timeSheetId: number): Observable<object> {
-    return this.http.delete(this._timeSheetUrl.concat(timeSheetId.toString()));
+  deleteTimeSheet(timeSheetId: number): void {
+    this.http.delete(this._timeSheetUrl.concat(timeSheetId.toString()))
+        .subscribe();
   }
 
   // DELETE

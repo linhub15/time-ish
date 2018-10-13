@@ -5,7 +5,9 @@
   <mat-card routerLink="/timesheets/{{timeSheet.id}}">
     <mat-card-title>{{timeSheet.employee.fullName()}}</mat-card-title>
     <mat-card-content>${{timeSheet.totalPay()}} - Put Status Here</mat-card-content>
+    <button mat-button color="warning"
+      (click)="deleteTimeSheet(timeSheet)">Delete TimeSheet</button>
   </mat-card>
 </div>
 <button mat-raised-button color="primary"
-    (click)="openDialog()">New Time Sheet</button>
+    (click)="openDialog()">Add Time Sheet</button>
