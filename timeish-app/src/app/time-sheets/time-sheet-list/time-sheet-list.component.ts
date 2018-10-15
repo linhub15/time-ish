@@ -1,10 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { TimeSheetsService } from '../time-sheets.service';
-import { TimeSheet } from '../../models/time-sheet.model';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+
+import { TimeSheet } from '../../models/time-sheet.model';
 import { Employee } from 'src/app/models/employee.model';
+
+import { TimeSheetsService } from '../time-sheets.service';
+import { EmployeeService } from 'src/app/employees/employee.service';
+
 import { AddTimeSheetDialogComponent } from '../add-time-sheet-dialog/add-time-sheet-dialog.component';
-import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-time-sheet-list',
@@ -39,15 +42,10 @@ export class TimeSheetListComponent implements OnInit {
   }
 
   openDialog(): void {
-    const employees: Employee[] = [];
-    this.employeeService.getEmployees().subscribe(array => {
-      for (const employee of array) {
-        employees.push(new Employee().deserialize(employee));
-      }
-    });
+    const employees$ = this.employeeService.getEmployees();
     const dialogRef = this.dialog.open(AddTimeSheetDialogComponent, {
       autoFocus: false,
-      data: {employees: employees}
+      data: {employees: employees$}
     });
 
     dialogRef.afterClosed().subscribe(timeSheet => {

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Employee } from 'src/app/models/employee.model';
 import { TimeSheet } from 'src/app/models/time-sheet.model';
+import { Observable } from 'rxjs';
 
 
 /**
@@ -9,7 +10,7 @@ import { TimeSheet } from 'src/app/models/time-sheet.model';
  * Functions need to be called from within DialogComponent
  */
 export interface DialogData {
-  employees: Employee[];
+  employees$: Observable<Employee[]>;
 }
 
 @Component({

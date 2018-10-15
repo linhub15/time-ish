@@ -4,7 +4,7 @@
     <input matInput type="text" placeholder="Employee Name" aria-label="Employee" [matAutocomplete]="auto"
     [(ngModel)]="selectedEmployee" [autofocus]="false">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFullName">
-      <mat-option *ngFor="let employee of this.data.employees" [value]="employee">
+      <mat-option *ngFor="let employee of (this.data.employees$ | async)" [value]="employee">
         {{employee.fullName()}}
       </mat-option>
     </mat-autocomplete>

@@ -7,20 +7,24 @@ import { AppComponent } from './app.component';
 
 /* Feature Modules */
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { TimeSheetsModule } from './time-sheets/time-sheets.module';
+import { EmployeesModule } from './employees/employees.module';
 
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared.module';
+
+
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     CoreModule,
     SharedModule,
-    TimeSheetsModule
+    TimeSheetsModule,
+    EmployeesModule,
+    AppRoutingModule,
   ],
   providers: [],
   declarations: [AppComponent],

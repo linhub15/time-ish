@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { link } from 'fs';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +13,7 @@ export class AppComponent {
 
   ngOnInit() { 
     this.links.push(new Link('/timesheets', 'Time Sheets'));
+    this.links.push(new Link('/employees', 'Employees'));
   }
 
   toggleSideNav(toggled: boolean) {
