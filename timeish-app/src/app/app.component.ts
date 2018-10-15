@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'timeish-app';
-  ngOnInit() { }
+  @ViewChild('sidenav') sidenav: MatSidenav;
+
+  ngOnInit() { 
+  }
+
+  toggleSideNav(toggled: boolean) {
+    if (!toggled) { return }
+    this.sidenav.toggle();
+  }
+  closeSideNav() {
+    this.sidenav.close();
+  }
 }

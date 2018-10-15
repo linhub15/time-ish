@@ -11,6 +11,7 @@ import { TimeSheetsModule } from './time-sheets/time-sheets.module';
 
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     AppRoutingModule,
     CoreModule,
+    SharedModule,
     TimeSheetsModule
   ],
   providers: [],

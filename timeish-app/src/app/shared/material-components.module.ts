@@ -6,14 +6,16 @@ import {MatButtonModule, MatCardModule,
         MatFormFieldModule, MatInputModule, 
         MatDatepickerModule, MatExpansionModule,
         MatNativeDateModule, MatDialogModule,
-        MatAutocompleteModule, MatIconModule
+        MatAutocompleteModule, MatIconModule,
+        MatToolbarModule, MatSidenavModule,
       } from '@angular/material';
 
   const materialComponentModules = [
     BrowserAnimationsModule, MatButtonModule, MatCardModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatExpansionModule, MatDialogModule,
-    MatAutocompleteModule, MatIconModule
+    MatAutocompleteModule, MatIconModule, MatToolbarModule,
+    MatSidenavModule,
   ];
 
 @NgModule({
