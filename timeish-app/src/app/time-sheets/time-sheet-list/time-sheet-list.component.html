@@ -3,10 +3,10 @@
   <mat-card>
     <mat-card-title>{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}} - {{timeSheet.status()}}</mat-card-title>
     <mat-card-content></mat-card-content>
-    <button mat-button routerLink="/timesheets/{{timeSheet.id}}">View</button>
+    <a mat-button routerLink="/timesheets/{{timeSheet.id}}">View</a>
     <button mat-button color="warning"
       (click)="deleteTimeSheet(timeSheet)">Delete</button>
   </mat-card>
 </div>
-<button mat-raised-button color="primary"
-    (click)="openDialog()">Add Time Sheet</button>
+<button id="addTimeSheet" mat-fab color="primary" aria-label="Add Time Sheet"
+    (click)="openDialog()"><mat-icon>add</mat-icon></button>
