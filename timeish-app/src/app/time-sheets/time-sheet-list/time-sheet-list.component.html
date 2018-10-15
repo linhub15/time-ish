@@ -1,4 +1,3 @@
-<h2>All Time Sheets</h2>
 <div *ngFor="let timeSheet of timeSheets">
   <mat-card>
     <mat-card-title>{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}} - {{timeSheet.status()}}</mat-card-title>

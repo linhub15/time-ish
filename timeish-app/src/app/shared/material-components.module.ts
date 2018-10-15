@@ -7,7 +7,8 @@ import {MatButtonModule, MatCardModule,
         MatDatepickerModule, MatExpansionModule,
         MatNativeDateModule, MatDialogModule,
         MatAutocompleteModule, MatIconModule,
-        MatToolbarModule, MatSidenavModule,
+        MatToolbarModule, MatSidenavModule, 
+        MatListModule,
       } from '@angular/material';
 
   const materialComponentModules = [
@@ -15,7 +16,7 @@ import {MatButtonModule, MatCardModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatExpansionModule, MatDialogModule,
     MatAutocompleteModule, MatIconModule, MatToolbarModule,
-    MatSidenavModule,
+    MatSidenavModule, MatListModule,
   ];
 
 @NgModule({

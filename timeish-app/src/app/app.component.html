@@ -1,8 +1,11 @@
 <app-toolbar (toggleSidenav)="toggleSideNav($event)"></app-toolbar>
 <mat-sidenav-container (backdropClick)="closeSideNav()">
     <mat-sidenav #sidenav>
-        <h1>Navigation</h1>
-        <a routerLink="/timesheets">Time Sheets</a>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let link of links">
+                <a matLine routerLink="{{link.url}}" (click)="closeSideNav()">{{link.text}}</a>
+            </mat-list-item>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
