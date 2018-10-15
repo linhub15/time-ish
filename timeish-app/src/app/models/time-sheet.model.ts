@@ -43,4 +43,11 @@ export class TimeSheet implements Deserializable{
         }
         return pay;
     }
+
+    status(): string {
+        if (this.approved) { return 'Approved' }
+        else if (this.submitted) { return 'Submitted' }
+        else if (this.issued) { return 'Issued' }
+        else { return 'Created' }
+    }
 }

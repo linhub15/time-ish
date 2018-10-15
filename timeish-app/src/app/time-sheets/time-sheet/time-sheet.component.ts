@@ -63,6 +63,6 @@ export class TimeSheetComponent implements OnInit {
     // Are you sure you want to submit? No more changes can be made
     this.submitted = true;
     this.timeSheet.submitted = new Date();
-    this.apiService.putTimeSheet(this.timeSheet);
+    this.apiService.putTimeSheet(this.timeSheet).subscribe();
   }
 }

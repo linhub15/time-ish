@@ -1,12 +1,11 @@
-<p>
-  time-sheet-list works!
-</p>
+<h2>All Time Sheets</h2>
 <div *ngFor="let timeSheet of timeSheets">
-  <mat-card routerLink="/timesheets/{{timeSheet.id}}">
-    <mat-card-title>{{timeSheet.employee.fullName()}}</mat-card-title>
-    <mat-card-content>${{timeSheet.totalPay()}} - Put Status Here</mat-card-content>
+  <mat-card>
+    <mat-card-title>{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}} - {{timeSheet.status()}}</mat-card-title>
+    <mat-card-content></mat-card-content>
+    <button mat-button routerLink="/timesheets/{{timeSheet.id}}">View</button>
     <button mat-button color="warning"
-      (click)="deleteTimeSheet(timeSheet)">Delete TimeSheet</button>
+      (click)="deleteTimeSheet(timeSheet)">Delete</button>
   </mat-card>
 </div>
 <button mat-raised-button color="primary"
