@@ -28,8 +28,8 @@ export class EmployeesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(employee => {
       if (!employee) { return }
-      this.employeeService.postEmployee(employee)
-          .subscribe(id => employee.id = id);
+      console.log(employee);
+      this.employeeService.add(employee).subscribe();
       // add employee to list of employees$
     })
   }

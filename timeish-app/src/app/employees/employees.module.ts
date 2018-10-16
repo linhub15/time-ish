@@ -10,7 +10,7 @@ import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-d
 
 @NgModule({
   imports: [ CommonModule, SharedModule, EmployeesRoutingModule ],
-  entryComponents: [],
+  entryComponents: [AddEmployeeDialogComponent],
   declarations: [EmployeesListComponent, EmployeeDetailComponent, AddEmployeeDialogComponent]
 })
 export class EmployeesModule { }

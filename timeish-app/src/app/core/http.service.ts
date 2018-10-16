@@ -8,7 +8,6 @@ import { Deserializable } from "../models/deserializable.model";
 @Injectable({
   providedIn: 'root'
 })
-
 export class HttpService implements OnInit {
 
   readonly baseUrl = 'https://localhost:5001/api/';
