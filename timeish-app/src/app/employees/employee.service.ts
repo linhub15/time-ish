@@ -20,4 +20,8 @@ export class EmployeeService implements OnInit {
   add(employee: Employee): Observable<Employee> {
     return this.api.add(this.endPoint, employee, Employee);
   }
+
+  delete(id: number): Observable<any> {
+    return this.api.delete(this.endPoint, id);
+  }
 }

@@ -5,8 +5,16 @@
     box-sizing: border-box;
 }
 
+span {
+    width: 100%;
+}
 #addNewEmployee {
     position: fixed;
     right: 25px;
     bottom: 25px;
+}
+
+button.icon-btn {
+    /*  */
+    z-index: 4; 
 }

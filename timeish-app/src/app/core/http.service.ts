@@ -33,4 +33,8 @@ export class HttpService implements OnInit {
     return this.http.post(this.baseUrl.concat(resource), newObject)
         .pipe(map(obj => {return new model().deserialize(obj)}));
   }
+
+  delete(resource: string, id: number): Observable<any> {
+    return this.http.delete(this.baseUrl.concat(resource.concat(id.toString())));
+  }
 }

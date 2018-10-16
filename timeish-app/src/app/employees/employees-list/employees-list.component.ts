@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from '../employee.service';
-import { Observable, of } from 'rxjs';
 import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
 import { MatDialog } from '@angular/material';
-import { map, flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees-list',
@@ -33,5 +31,11 @@ export class EmployeesListComponent implements OnInit {
       this.employeeService.add(employee)
         .subscribe(e => this.employees.push(e))
     })
+  }
+  deleteEmployee(employee: Employee): void {
+    if (!employee) { console.log("required param"); return; }
+    this.employeeService.delete(employee.id).subscribe();
+    const index = this.employees.indexOf(employee);
+    this.employees.splice(index, 1)
   }
 }
