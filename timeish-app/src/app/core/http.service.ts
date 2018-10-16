@@ -15,21 +15,22 @@ export class HttpService implements OnInit {
 
   ngOnInit() { }
 
-  list<T extends Deserializable>(resource: string, c: new () => T)
+  list<T extends Deserializable>(resource: string, model: new () => T)
       : Observable<Array<T>> {
-    let obj: Deserializable;
     return this.http.get<Array<T>>(this.baseUrl.concat(resource))
       .pipe(
         map(array => {
           let newArray = [];
           array.forEach(item => 
-            newArray.push(new c().deserialize(item)));
+            newArray.push(new model().deserialize(item)));
           return newArray;
         })
       );
   }
 
-  add<T>(resource: string, newObject: T): Observable<any> {
-    return this.http.post(this.baseUrl.concat(resource), newObject);
+  add<T extends Deserializable>(resource: string, newObject, model: new () => T)
+      : Observable<T> {
+    return this.http.post(this.baseUrl.concat(resource), newObject)
+        .pipe(map(obj => {return new model().deserialize(obj)}));
   }
 }

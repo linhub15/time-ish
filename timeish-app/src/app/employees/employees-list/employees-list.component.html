@@ -1,5 +1,5 @@
 <mat-nav-list>
-  <mat-list-item *ngFor="let employee of (employees$ | async)">
+  <mat-list-item *ngFor="let employee of employees">
     <div class="flex-stuff">
         <span>{{employee.fullName()}}</span>
         <span>{{employee.email}}</span>

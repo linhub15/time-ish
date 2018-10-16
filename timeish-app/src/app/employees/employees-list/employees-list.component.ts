@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from '../employee.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
 import { MatDialog } from '@angular/material';
+import { map, flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees-list',
@@ -11,12 +12,13 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./employees-list.component.css']
 })
 export class EmployeesListComponent implements OnInit {
-  employees$: Observable<Employee[]>;
+  employees: Employee[];
   constructor(private employeeService:EmployeeService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.employees$ = this.employeeService.getEmployees();
+    this.employeeService.getEmployees()
+        .subscribe(array => this.employees = array);
   }
 
   openDialog(): void {
@@ -28,9 +30,8 @@ export class EmployeesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(employee => {
       if (!employee) { return }
-      console.log(employee);
-      this.employeeService.add(employee).subscribe();
-      // add employee to list of employees$
+      this.employeeService.add(employee)
+        .subscribe(e => this.employees.push(e))
     })
   }
 }

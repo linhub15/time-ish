@@ -32,11 +32,11 @@ namespace api.Controllers
 
         // POST api/employees
         [HttpPost]
-        public ActionResult<int> Post([FromBody] Employee employee)
+        public ActionResult<Employee> Post([FromBody] Employee employee)
         {
             _context.Employees.Add(employee);
             _context.SaveChanges();
-            return employee.Id;
+            return employee;
         }
 
         // PUT api/employees/:id
