@@ -45,7 +45,7 @@ export class TimeSheetListComponent implements OnInit {
     const employees$ = this.employeeService.getEmployees();
     const dialogRef = this.dialog.open(AddTimeSheetDialogComponent, {
       autoFocus: false,
-      data: {employees: employees$}
+      data: {employees$: employees$}
     });
 
     dialogRef.afterClosed().subscribe(timeSheet => {
