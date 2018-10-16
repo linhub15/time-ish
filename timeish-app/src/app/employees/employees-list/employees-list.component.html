@@ -1,0 +1,11 @@
+<mat-nav-list>
+  <mat-list-item *ngFor="let employee of (employees$ | async)">
+    <div class="flex-stuff">
+        <span>{{employee.fullName()}}</span>
+        <span>{{employee.email}}</span>
+        <span>${{employee.hourlyPay}} / Hour</span>
+    </div>
+  </mat-list-item>
+</mat-nav-list>
+<button id="addNewEmployee" mat-fab color="primary">
+  <mat-icon>add</mat-icon></button>

@@ -4,11 +4,13 @@ import { SharedModule } from '../shared/shared.module';
 import { EmployeesRoutingModule } from './employees-routing.module';
 
 /* Components */
-import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component';
 
 @NgModule({
   imports: [ CommonModule, SharedModule, EmployeesRoutingModule ],
   entryComponents: [],
-  declarations: [EmployeesComponent]
+  declarations: [EmployeesListComponent, EmployeeDetailComponent, AddEmployeeDialogComponent]
 })
 export class EmployeesModule { }

@@ -1,0 +1,12 @@
+.flex-stuff {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+#addNewEmployee {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+}
