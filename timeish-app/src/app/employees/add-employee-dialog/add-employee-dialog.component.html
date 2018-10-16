@@ -1,8 +1,27 @@
+<h2 mat-dialog-title>Add Employee</h2>
 <mat-dialog-content>
-  <p>
-      add-employee-dialog works!
-  </p>
+  <mat-form-field>
+    <input matInput type="text" placeholder="First Name" aria-label="First Name"
+    [(ngModel)]="employee.firstName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Last Name" aria-label="Last Name"
+    [(ngModel)]="employee.lastName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="email" placeholder="Email" aria-label="Email"
+    [(ngModel)]="employee.email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Hourly Pay" aria-label="Hourly Pay"
+    [(ngModel)]="employee.hourlyPay">
+  </mat-form-field>
+
 </mat-dialog-content>
 <mat-dialog-actions>
-
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="addNewEmployee()" mat-dialog-close>Add</button>
 </mat-dialog-actions>

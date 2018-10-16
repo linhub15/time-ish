@@ -17,7 +17,7 @@ export class AddEmployeeDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
   addNewEmployee() {
     this.dialogRef.close(this.employee);
   }
