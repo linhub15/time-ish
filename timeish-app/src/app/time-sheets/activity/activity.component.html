@@ -2,7 +2,7 @@
 
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <div *ngIf="activity.date; else newActivity">{{activity.date | date:'E MMMM d, y'}}</div>
+        <div *ngIf="activity.date; else newActivity">{{activity.date | date:'E MMM d'}}</div>
         <ng-template #newActivity>
           New Activity
         </ng-template>
