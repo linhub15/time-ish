@@ -10,6 +10,7 @@ import { Deserializable } from "../models/deserializable.model";
 })
 export class HttpService implements OnInit {
 
+  // This will be passed in from variables...
   readonly baseUrl = 'https://localhost:5001/api/';
   constructor(private http: HttpClient) { }
 
@@ -17,7 +18,7 @@ export class HttpService implements OnInit {
 
   list<T extends Deserializable>(resource: string, model: new () => T)
       : Observable<Array<T>> {
-    return this.http.get<Array<T>>(this.baseUrl.concat(resource))
+    return this.http.get<Array<T>>(this.buildUrl(resource))
       .pipe(
         map(array => {
           let newArray = [];
@@ -30,11 +31,17 @@ export class HttpService implements OnInit {
 
   add<T extends Deserializable>(resource: string, newObject, model: new () => T)
       : Observable<T> {
-    return this.http.post(this.baseUrl.concat(resource), newObject)
+    return this.http.post(this.buildUrl(resource), newObject)
         .pipe(map(obj => {return new model().deserialize(obj)}));
   }
 
   delete(resource: string, id: number): Observable<any> {
-    return this.http.delete(this.baseUrl.concat(resource.concat(id.toString())));
+    if (!resource || !id) { console.log("required params"); return; }
+    return this.http.delete(this.buildUrl(resource, id.toString()));
+  }
+  private buildUrl(...resource: string[]): string {
+    let buff: string = this.baseUrl;
+    resource.forEach(item => buff = buff.concat(item + '/'));
+    return buff;
   }
 }
