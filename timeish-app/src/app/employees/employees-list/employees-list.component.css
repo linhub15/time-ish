@@ -11,6 +11,11 @@
     cursor: pointer;
 }
 
+.mat-list-item:hover .icon-btn{
+    visibility: visible;
+    opacity: 1;
+}
+
 .name {
     width: 20em;
     padding: 0 2em;
@@ -33,5 +38,8 @@
 
 button.icon-btn {
     /*  */
-    z-index: 4; 
+    z-index: 4;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.14s linear;
 }

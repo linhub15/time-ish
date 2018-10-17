@@ -2,7 +2,9 @@ mat-list-item {
     padding: 10px 0;
 }
 
-mat-list-item:hover button.hidden-btn {
+mat-list-item:hover button.hidden-btn,
+mat-list-item:focus-within button.hidden-btn
+{
     visibility: visible;
     opacity: 1;
 }
