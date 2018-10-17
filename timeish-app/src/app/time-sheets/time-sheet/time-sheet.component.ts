@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import { TimeSheet } from '../../models/time-sheet.model';
 import { ActivatedRoute } from '@angular/router';
 import { TimeSheetsService } from '../time-sheets.service';
+import { ActivityComponent } from '../activity/activity.component';
 
 @Component({
   selector: 'app-time-sheet',
@@ -14,6 +15,8 @@ export class TimeSheetComponent implements OnInit {
   submitted: boolean;
   timeSheet: TimeSheet;
 
+  @ViewChildren('activities') activities: QueryList<ActivityComponent>;
+  
   constructor(
     private route: ActivatedRoute,
     private apiService: TimeSheetsService,
@@ -24,7 +27,6 @@ export class TimeSheetComponent implements OnInit {
     this.submitted = false; // TODO: Get this from the database
     this.getTimeSheet();
   }
-  
   getTimeSheet(): void {
     // the (+) operator converts string to number
     const id: number = +this.route.snapshot.paramMap.get('id');
@@ -37,6 +39,10 @@ export class TimeSheetComponent implements OnInit {
   addActivity() {
     this.inEditMode = true;
     this.timeSheet.addActivity();
+    this.activities.notifyOnChanges();
+    this.activities.changes
+        .subscribe(activities => activities.last.accordian.open());
+    this.activities.notifyOnChanges();
   }
 
   deleteActivity(activityId: number) {

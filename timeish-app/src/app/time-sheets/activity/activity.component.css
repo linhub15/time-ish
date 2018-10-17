@@ -6,3 +6,7 @@ mat-panel-title {
 mat-panel-description {
     width: 100%;
 }
+
+mat-form-field, button {
+    margin: 0 10px 10px 10px;
+}

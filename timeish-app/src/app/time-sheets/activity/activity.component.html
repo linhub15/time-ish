@@ -1,4 +1,4 @@
-<mat-expansion-panel>
+<mat-expansion-panel #accordian (keyup.enter)="close">
 
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -30,8 +30,8 @@
       <input [(ngModel)]="activity.description"
           matInput placeholder="Description" type="text">
     </mat-form-field>
-    <br>
-    <button mat-raised-button
-    (click)="delete()">Remove</button>
-
+    <button mat-button
+    (click)="delete()" color="primary">Remove</button>
+    <button mat-button
+    (click)="add()">Add Activity</button>
 </mat-expansion-panel>

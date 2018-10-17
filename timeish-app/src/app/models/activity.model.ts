@@ -13,7 +13,4 @@ export class Activity implements Deserializable{
     deserialize(input: any) {
         return Object.assign(this, input);
     }
-    // pay(hourlyPay: number): number {
-    //     return hourlyPay * this.hours;
-    // }
 }
