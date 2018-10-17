@@ -45,7 +45,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   set dateValue(val) {
-    this._dateValue = moment(val);
+    this._dateValue = moment(val).format();
     this.propagateChange(this._dateValue);
   }
   
