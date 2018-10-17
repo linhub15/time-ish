@@ -34,28 +34,28 @@ export const MY_FORMATS = {
 })
 
 export class DatePickerComponent implements ControlValueAccessor {
-
+  private format = "YYYY-MM-DD";
   @Input() public placeholder: string = "Select Date";
   @Input() _dateValue: string = null;
 
   constructor() { }
   
   get dateValue() {
-    return moment(this._dateValue);
+    return moment(this._dateValue, this.format);
   }
 
   set dateValue(val) {
-    this._dateValue = moment(val).format();
+    this._dateValue = moment(val).format(this.format);
     this.propagateChange(this._dateValue);
   }
   
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.dateValue = moment(event.value);
+    this.dateValue = moment(event.value, this.format);
   }
 
   writeValue(value: any) {
       if (value !== undefined) {
-        this.dateValue = moment(value);
+        this.dateValue = moment(value, this.format);
       }
   }
 

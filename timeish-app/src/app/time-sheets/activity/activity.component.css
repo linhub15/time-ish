@@ -2,6 +2,11 @@ mat-list-item {
     padding: 10px 0;
 }
 
+mat-list-item:hover button.hidden-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
 mat-panel-title {
     width: 30em;
     padding: 0 10px;
@@ -13,4 +18,10 @@ mat-panel-description {
 
 mat-form-field, button {
     margin: 0 10px 10px 10px;
+}
+
+.hidden-btn {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.14s linear;
 }
