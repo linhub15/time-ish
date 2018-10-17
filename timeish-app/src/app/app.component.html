@@ -1,4 +1,4 @@
-<app-toolbar (toggleSidenav)="toggleSideNav($event)"></app-toolbar>
+<app-toolbar (toggleSidenav)="toggleSideNav($event)" title="{{navTitle}}"></app-toolbar>
 <mat-sidenav-container (backdropClick)="closeSideNav()">
     <mat-sidenav #sidenav>
         <mat-nav-list>
