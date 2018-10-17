@@ -20,7 +20,9 @@ export const MY_FORMATS = {
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
-  styles: [':host { margin: 0 10px 10px 10px; }'],
+  styles: [`:host { margin: 0 10px 10px 10px;}
+    :host:hover { cursor: pointer;}
+    input {cursor: pointer;}`],
   providers: [
     { provide: NG_VALUE_ACCESSOR, 
       useExisting: forwardRef(()=> DatePickerComponent),
@@ -33,28 +35,27 @@ export const MY_FORMATS = {
 
 export class DatePickerComponent implements ControlValueAccessor {
 
-  @Input() public placeholder: string = null;
-  @Input() private format = 'YYYY/MM/DD HH:mm:ss';
+  @Input() public placeholder: string = "Select Date";
   @Input() _dateValue: string = null;
 
   constructor() { }
   
   get dateValue() {
-    return moment(this._dateValue, this.format);
+    return moment(this._dateValue);
   }
 
   set dateValue(val) {
-    this._dateValue = moment(val).format(this.format);
+    this._dateValue = moment(val);
     this.propagateChange(this._dateValue);
   }
   
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.dateValue = moment(event.value, this.format);
+    this.dateValue = moment(event.value);
   }
 
   writeValue(value: any) {
       if (value !== undefined) {
-        this.dateValue = moment(value, this.format);
+        this.dateValue = moment(value);
       }
   }
 

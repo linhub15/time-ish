@@ -1,3 +1,7 @@
+mat-list-item {
+    padding: 10px 0;
+}
+
 mat-panel-title {
     width: 30em;
     padding: 0 10px;
