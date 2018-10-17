@@ -1,9 +1,9 @@
 <mat-list role="rowgroup">
   <mat-list-item *ngFor="let employee of employees">
-    <div class="flex-stuff">
-        <span>{{employee.fullName()}}</span>
-        <span>{{employee.email}}</span>
-        <span>${{employee.hourlyPay}} / Hour</span>
+    <div class="list-item">
+        <div class="name">{{employee.fullName()}}</div>
+        <div class="email">{{employee.email}}</div>
+        <div class="pay">${{employee.hourlyPay}} / Hour</div>
         <button class="icon-btn" mat-icon-button
           (click)="deleteEmployee(employee)">
           <mat-icon matListIcon>delete</mat-icon></button>

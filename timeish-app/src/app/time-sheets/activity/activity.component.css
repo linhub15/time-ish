@@ -1,0 +1,8 @@
+mat-panel-title {
+    width: 30em;
+    padding: 0 10px;
+}
+
+mat-panel-description {
+    width: 100%;
+}

@@ -1,12 +1,29 @@
-.flex-stuff {
+.list-item {
     width: 100%;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
+    line-height: 40px;
 }
 
-span {
+.mat-list-item:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.name {
+    width: 20em;
+    padding: 0 2em;
+}
+
+.email {
     width: 100%;
+}
+
+.pay {
+    width: 10em;
+    padding: 0 2em;
+    text-align: right;
 }
 #addNewEmployee {
     position: fixed;
