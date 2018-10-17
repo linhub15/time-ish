@@ -22,6 +22,10 @@ export class TimeSheet implements Deserializable{
         return Object.assign(this, input);
     }
 
+    hasActivities(): boolean {
+        if (this.activities.length < 1) { return false;}
+        else { return true }
+    }
     addActivity(): void {
         let activity = new Activity().deserialize(
             { payPeriodId: this.payPeriodId });
