@@ -11,7 +11,6 @@ import { ActivityComponent } from '../activity/activity.component';
 })
 export class TimeSheetComponent implements OnInit {
 
-  inEditMode: boolean;
   submitted: boolean;
   timeSheet: TimeSheet;
 
@@ -23,7 +22,6 @@ export class TimeSheetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inEditMode = false;
     this.submitted = false; // TODO: Get this from the database
     this.getTimeSheet();
   }
@@ -37,12 +35,7 @@ export class TimeSheetComponent implements OnInit {
   }
 
   addActivity() {
-    this.inEditMode = true;
     this.timeSheet.addActivity();
-    this.activities.notifyOnChanges();
-    this.activities.changes
-        .subscribe(activities => activities.last.accordian.open());
-    this.activities.notifyOnChanges();
   }
 
   deleteActivity(activityId: number) {
@@ -58,7 +51,6 @@ export class TimeSheetComponent implements OnInit {
   }
 
   save() {
-    this.inEditMode = false;
     this.apiService.putTimeSheet(this.timeSheet)
         .subscribe(timeSheet => {
           this.timeSheet.deserialize(timeSheet);

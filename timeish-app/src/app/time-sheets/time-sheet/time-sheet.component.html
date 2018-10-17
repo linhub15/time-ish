@@ -4,12 +4,12 @@
 
 <div>Total Hours: {{timeSheet?.totalHours()}}</div>
 <div>Total Pay: {{timeSheet?.totalPay()}}</div>
-<mat-accordion>
+<mat-list>
   <app-activity #activities *ngFor="let activity of timeSheet?.activities"
       [activity]="activity" 
       (deleteActivity)="deleteActivity($event)" 
       (addActivity)="addActivity()"></app-activity>
-</mat-accordion>
+</mat-list>
 <div *ngIf="!submitted">
   <button mat-raised-button
       (click)="save()">Save</button>

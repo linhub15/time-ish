@@ -1,37 +1,27 @@
-<mat-expansion-panel #accordian (keyup.enter)="close">
+<mat-list-item>
+  
+  <app-date-picker 
+      placeholder="Date"
+      [(ngModel)]="activity.date"
+      format="YYYY/MM/DD HH:mm:ss">
+  </app-date-picker>
 
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <div *ngIf="activity.date; else newActivity">{{activity.date | date:'E MMM d'}}</div>
-        <ng-template #newActivity>
-          New Activity
-        </ng-template>
-      </mat-panel-title>
-      <mat-panel-description>
-        <div *ngIf="activity.pay">${{activity.pay}}</div>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+  <mat-form-field>
+    <input [(ngModel)]="activity.hours" (blur)="calculatePay()"
+        matInput placeholder="Hours" type="number">
+  </mat-form-field>
 
+  <div *ngIf="activity.pay">${{activity.pay}}</div>
 
-    <mat-form-field>
-      <input [(ngModel)]="activity.date"
-          (focus)="picker.open()"
-          matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="activity.description"
+        matInput placeholder="Description" type="text">
+  </mat-form-field>
 
-    <mat-form-field>
-      <input [(ngModel)]="activity.hours" (blur)="calculatePay()"
-          matInput placeholder="Hours" type="number">
-    </mat-form-field>
+  <button mat-icon-button
+  (click)="delete()" color="primary"><mat-icon>clear</mat-icon></button>
 
-    <mat-form-field>
-      <input [(ngModel)]="activity.description"
-          matInput placeholder="Description" type="text">
-    </mat-form-field>
-    <button mat-button
-    (click)="delete()" color="primary">Remove</button>
-    <button mat-button
-    (click)="add()">Add Activity</button>
-</mat-expansion-panel>
+  <button mat-icon-button
+  (click)="add()"><mat-icon>add</mat-icon></button>
+
+</mat-list-item>
