@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from '../employee.service';
-import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
+import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
 import { MatDialog } from '@angular/material';
 
 @Component({
@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./employees-list.component.css']
 })
 export class EmployeesListComponent implements OnInit {
-  employees: Employee[];
+   employees: Employee[];
   constructor(private employeeService:EmployeeService,
     public dialog: MatDialog) { }
 
@@ -19,11 +19,15 @@ export class EmployeesListComponent implements OnInit {
         .subscribe(array => this.employees = array);
   }
 
-  openDialog(): void {
+  openAddDialog(): void {
     const employee = new Employee();
-    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+    const dialogRef = this.dialog.open(EmployeeDialogComponent, {
       autoFocus: false,
-      data: employee
+      data: {
+        title: 'Add Employee',
+        employee: employee,
+        submitAction: 'Add'
+      }
     });
 
     dialogRef.afterClosed().subscribe(employee => {
@@ -32,6 +36,24 @@ export class EmployeesListComponent implements OnInit {
         .subscribe(e => this.employees.push(e))
     })
   }
+  openEditDialog(employee: Employee): void {
+    let employeeContainer = new Employee().deserialize(employee);
+    const dialogRef = this.dialog.open(EmployeeDialogComponent, {
+      autoFocus: false,
+      data: {
+        title: 'Edit Employee',
+        employee: employeeContainer,
+        submitAction: 'Save'
+      }
+    });
+    dialogRef.afterClosed().subscribe(dialogEmployee => {
+      if (!dialogEmployee) {return}
+      this.employeeService.update(dialogEmployee).subscribe();
+      let index = this.employees.indexOf(employee);
+      this.employees[index] = dialogEmployee;
+    });
+  }
+
   deleteEmployee(employee: Employee): void {
     if (!employee) { console.log("required param"); return; }
     this.employeeService.delete(employee.id).subscribe();

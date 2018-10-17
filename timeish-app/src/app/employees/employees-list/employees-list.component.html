@@ -1,5 +1,5 @@
 <mat-list role="rowgroup">
-  <mat-list-item *ngFor="let employee of employees">
+  <mat-list-item #employees *ngFor="let employee of employees" (click)="openEditDialog(employee)">
     <div class="list-item">
         <div class="name">{{employee.fullName()}}</div>
         <div class="email">{{employee.email}}</div>
@@ -11,5 +11,5 @@
   </mat-list-item>
 </mat-list>
 <button id="addNewEmployee" mat-fab color="primary"
-  (click)="openDialog()">
+  (click)="openAddDialog()">
   <mat-icon>add</mat-icon></button>

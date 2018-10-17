@@ -37,11 +37,21 @@ export class HttpService implements OnInit {
 
   delete(resource: string, id: number): Observable<any> {
     if (!resource || !id) { console.log("required params"); return; }
-    return this.http.delete(this.buildUrl(resource, id.toString()));
+    const url = this.buildUrl(resource, id.toString());
+    return this.http.delete(url);
   }
+
+  update<T extends Deserializable>(resource: string, object: T): Observable<any> {
+    if (!object.id) { return }
+    
+    const url = this.buildUrl(resource, object.id.toString());
+    return this.http.put(url, object);
+  }
+
   private buildUrl(...resource: string[]): string {
     let buff: string = this.baseUrl;
     resource.forEach(item => buff = buff.concat(item + '/'));
     return buff;
   }
+
 }

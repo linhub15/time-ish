@@ -5,12 +5,11 @@ import { EmployeesRoutingModule } from './employees-routing.module';
 
 /* Components */
 import { EmployeesListComponent } from './employees-list/employees-list.component';
-import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
-import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component';
+import { EmployeeDialogComponent } from './employee-dialog/employee-dialog.component';
 
 @NgModule({
   imports: [ CommonModule, SharedModule, EmployeesRoutingModule ],
-  entryComponents: [AddEmployeeDialogComponent],
-  declarations: [EmployeesListComponent, EmployeeDetailComponent, AddEmployeeDialogComponent]
+  entryComponents: [EmployeeDialogComponent],
+  declarations: [EmployeesListComponent, EmployeeDialogComponent]
 })
 export class EmployeesModule { }

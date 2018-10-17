@@ -23,4 +23,8 @@ export class EmployeeService implements OnInit {
   delete(id: number): Observable<any> {
     return this.api.delete(this.resource, id);
   }
+
+  update(employee: Employee): Observable<any> {
+   return this.api.update(this.resource, employee);
+  }
 }
