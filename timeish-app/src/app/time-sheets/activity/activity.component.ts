@@ -1,20 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Activity } from '../../models/activity.model';
 
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',
-  styleUrls: ['./activity.component.css']
+  styleUrls: ['./activity.component.css'],
+  providers: [
+  ],
 })
-export class ActivityComponent implements OnInit{
+export class ActivityComponent {
   @Input() activity: Activity;
   @Output() deleteActivity = new EventEmitter<number>();
   @Output() addActivity = new EventEmitter<true>();
 
-
   constructor() { }
 
-  ngOnInit() { }
 
   calculatePay(): void {
     //TODO: remove hard coded pay
