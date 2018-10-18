@@ -43,24 +43,19 @@ export class TimeSheetComponent implements OnInit {
     let index = this.timeSheet.activities
         .findIndex(activity => activity.id == activityId)
     this.timeSheet.activities.splice(index, 1);
-
-    // "Add Activity" doesn't insert new Activity in DB
-    // Can't delete what doesn't exist
-    if (!activityId) { return } 
+    if (!activityId) { return } // Can't delete what doesn't exist
     this.apiService.deleteActivity(activityId).subscribe();
   }
 
   save() {
-    this.apiService.putTimeSheet(this.timeSheet)
-        .subscribe(timeSheet => {
-          this.timeSheet.deserialize(timeSheet);
-        });
+    this.apiService.update(this.timeSheet)
+        .subscribe(timesheet => this.timeSheet = timesheet);
   }
 
   submit() {
     // Are you sure you want to submit? No more changes can be made
     this.submitted = true;
     this.timeSheet.submitted = new Date();
-    this.apiService.putTimeSheet(this.timeSheet).subscribe();
+    this.save();
   }
 }

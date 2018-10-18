@@ -25,6 +25,6 @@ export class EmployeeService implements OnInit {
   }
 
   update(employee: Employee): Observable<any> {
-   return this.api.update(this.resource, employee);
+   return this.api.update(this.resource, employee, Employee);
   }
 }

@@ -13,8 +13,8 @@ export class TimeSheetsService {
   readonly _apiUrl: string;
   readonly _timeSheetUrl: string;
   readonly _activityUrl: string;
-
-  readonly resource: string = 'timesheets';
+  readonly type = TimeSheet;    // could be injected 
+  readonly resource: string = 'timesheets';  // could be injected
 
   constructor(private http: HttpClient,
     private httpService: HttpService) {
@@ -36,13 +36,12 @@ export class TimeSheetsService {
 
   // POST
   postTimeSheet(timeSheet: TimeSheet): Observable<TimeSheet> {
-    // How to do error catching?
-    return this.http.post<TimeSheet>(this._timeSheetUrl, timeSheet);
+    return this.httpService.add(this.resource, timeSheet, TimeSheet);
   }
 
   // PUT
-  putTimeSheet(timeSheet: TimeSheet): Observable<TimeSheet> {
-    return this.http.put<TimeSheet>(this._timeSheetUrl.concat(timeSheet.id.toString()), timeSheet);
+  update(timeSheet: TimeSheet): Observable<TimeSheet> {
+    return this.httpService.update(this.resource, timeSheet, TimeSheet);
   }
 
   // DELETE

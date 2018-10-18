@@ -27,22 +27,19 @@ export class HttpService implements OnInit {
   list<T extends Deserializable>(resource: string, model: new () => T)
       : Observable<Array<T>> {
     return this.http.get<Array<T>>(this.buildUrl(resource))
-      .pipe(
-        map(array => {
-          let newArray = [];
-          array.forEach(item => 
-            newArray.push(new model().deserialize(item)));
-          return newArray;
-        })
-      );
+      .pipe(map(array => {
+        let newArray = [];
+        array.forEach(item => newArray.push(new model().deserialize(item)));
+        return newArray;
+      }));
   }
 
-  get<T extends Deserializable>(resource: string, id: number, model: new () => T)
-    : Observable<T> {
-      let url = this.buildUrl(resource, id.toString());
-      return this.http.get<T>(url).pipe(
-          map(obj => {return new model().deserialize(obj)})
-        );
+  get<T extends Deserializable>(
+      resource: string, id: number,model: new () => T) : Observable<T> {
+    let url = this.buildUrl(resource, id.toString());
+    return this.http.get<T>(url).pipe(
+        map(obj => {return new model().deserialize(obj)})
+      );
   }
 
   add<T extends Deserializable>(resource: string, newObject, model: new () => T)
@@ -57,11 +54,11 @@ export class HttpService implements OnInit {
     return this.http.delete(url);
   }
 
-  update<T extends Deserializable>(resource: string, object: T): Observable<any> {
+  update<T extends Deserializable>(resource: string, object: T, model: new () => T): Observable<T> {
     if (!object.id) { return }
-    
     const url = this.buildUrl(resource, object.id.toString());
-    return this.http.put(url, object);
+    return this.http.put(url, object)
+        .pipe(map(obj => {return new model().deserialize(obj)}));;
   }
 
   private buildUrl(...resource: string[]): string {
