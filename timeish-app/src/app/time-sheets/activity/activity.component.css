@@ -19,3 +19,6 @@ mat-form-field, button {
     transition: visibility 0s, opacity 0.14s linear;
 }
 
+#pay {
+    width: 3em;
+}

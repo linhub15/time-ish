@@ -1,18 +1,24 @@
 <mat-list-item>
+
   <app-date-picker [(ngModel)]="activity.date" [disabled]="isSubmitted">
   </app-date-picker>
 
-  <mat-form-field>
-    <input [(ngModel)]="activity.hours" (blur)="calculatePay()"
-        matInput placeholder="Hours" type="number" [disabled]="isSubmitted">
-  </mat-form-field>
-
-  <div *ngIf="activity.pay">${{activity.pay}}</div>
 
   <mat-form-field>
     <input [(ngModel)]="activity.description"
         matInput placeholder="Description" type="text" [disabled]="isSubmitted">
   </mat-form-field>
+
+
+  <mat-form-field>
+    <input [(ngModel)]="activity.hours"
+        matInput placeholder="Hours" type="number" [disabled]="isSubmitted">
+    <div matSuffix id="pay" matTooltip="Pay" matTooltipPosition="before">
+      {{showPay()}}</div>
+  </mat-form-field>
+
+  
+  
 
   <div *ngIf="!isSubmitted">
       <button class="hidden-btn" mat-icon-button
@@ -21,5 +27,6 @@
       <button class="hidden-btn" mat-icon-button
       (click)="add()"><mat-icon>add</mat-icon></button>
   </div>
+  
   
 </mat-list-item>

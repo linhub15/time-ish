@@ -21,6 +21,13 @@ export class ActivityComponent {
     this.activity.pay = this.hourlyPay * this.activity.hours;
   }
 
+  showPay(): string {
+    if (this.activity.hours) {
+      this.calculatePay();
+      return '$' + this.activity.pay;
+    }
+  }
+
   delete(): void {
     this.deleteActivity.emit(this.activity.id);
   }
