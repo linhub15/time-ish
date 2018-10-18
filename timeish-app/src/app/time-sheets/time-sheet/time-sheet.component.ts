@@ -22,8 +22,8 @@ export class TimeSheetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.submitted = false; // TODO: Get this from the database
     this.getTimeSheet();
+    this.submitted = this.timeSheet.submitted ? true : false;
   }
   getTimeSheet(): void {
     // the (+) operator converts string to number
