@@ -9,14 +9,17 @@ import {MatButtonModule, MatCardModule,
         MatAutocompleteModule, MatIconModule,
         MatToolbarModule, MatSidenavModule, 
         MatListModule, MatTooltipModule,
+        MatChipsModule,
       } from '@angular/material';
+import {MatRippleModule} from '@angular/material/core'
 
   const materialComponentModules = [
     BrowserAnimationsModule, MatButtonModule, MatCardModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule, MatExpansionModule, MatDialogModule,
     MatAutocompleteModule, MatIconModule, MatToolbarModule,
-    MatSidenavModule, MatListModule, MatTooltipModule
+    MatSidenavModule, MatListModule, MatTooltipModule,
+    MatChipsModule, MatRippleModule
   ];
 
 @NgModule({

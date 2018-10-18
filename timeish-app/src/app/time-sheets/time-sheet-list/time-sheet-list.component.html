@@ -1,18 +1,24 @@
 <div *ngFor="let timeSheet of timeSheets">
 
-  <mat-card>
-    <mat-card-content>
-    
-    <mat-icon matTooltip="{{timeSheet.status()}}">{{statusIcon(timeSheet.status())}}</mat-icon>
-    <span class="cdk-visually-hidden">{{timeSheet.status()}}</span>
-    <span>{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}}</span>
+  <mat-card class="flex-row" mat-ripple>
+    <mat-card-content class="timeSheet">
 
-    
-    <a mat-button routerLink="/timesheets/{{timeSheet.id}}">View</a>
-    <button mat-button color="warning"
-      (click)="deleteTimeSheet(timeSheet)">Delete</button>
+      <h3 class="name">{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}}</h3>
+
+      <mat-chip-list>
+        <mat-chip><mat-icon>{{statusIcon(timeSheet.status())}}</mat-icon>&nbsp;{{timeSheet.status()}}</mat-chip>
+      </mat-chip-list>
 
     </mat-card-content>
+
+    <mat-card-actions class="card-actions">
+      <button mat-icon-button
+          routerLink="/timesheets/{{timeSheet.id}}">
+        <mat-icon>edit</mat-icon></button>
+      <button mat-icon-button color="warning"
+          (click)="deleteTimeSheet(timeSheet)">
+        <mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
   </mat-card>
 
 </div>
