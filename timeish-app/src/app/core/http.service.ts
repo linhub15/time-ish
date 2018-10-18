@@ -16,6 +16,11 @@ export class HttpService implements OnInit {
 
   ngOnInit() { }
 
+  /**
+   * 
+   * @param resource The resource portion of api url e.g. example.com/api/resource
+   * @param model The type of object to return
+   */
   list<T extends Deserializable>(resource: string, model: new () => T)
       : Observable<Array<T>> {
     return this.http.get<Array<T>>(this.buildUrl(resource))

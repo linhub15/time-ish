@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { TimeSheet } from '../models/time-sheet.model';
+import { HttpService } from '../core/http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class TimeSheetsService {
   readonly _timeSheetUrl: string;
   readonly _activityUrl: string;
 
-  constructor(private http: HttpClient) {
+  readonly resource: string = 'timesheets';
+
+  constructor(private http: HttpClient,
+    private httpService: HttpService) {
     this._apiUrl = 'https://localhost:5001/api/'
     this._timeSheetUrl = this._apiUrl + 'timesheets/';
     this._activityUrl = this._timeSheetUrl + 'activities/'
@@ -22,7 +26,7 @@ export class TimeSheetsService {
 
   // GET /api/timesheets
   getTimeSheets(): Observable<TimeSheet[]> {
-    return this.http.get<TimeSheet[]>(this._timeSheetUrl);
+    return this.httpService.list(this.resource, TimeSheet);
   }
 
   // GET /api/timesheets/{id}

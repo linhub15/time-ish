@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { TimeSheet } from '../../models/time-sheet.model';
-import { Employee } from 'src/app/models/employee.model';
 
 import { TimeSheetsService } from '../time-sheets.service';
 import { EmployeeService } from 'src/app/employees/employee.service';
@@ -16,25 +15,17 @@ import { AddTimeSheetDialogComponent } from '../add-time-sheet-dialog/add-time-s
 })
 export class TimeSheetListComponent implements OnInit {
 
-  timeSheets: TimeSheet[];
+  timeSheets: TimeSheet[] = [];
   
   constructor(private apiService:TimeSheetsService,
       private employeeService: EmployeeService,
       public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getTimeSheets();
+    this.apiService.getTimeSheets()
+        .subscribe(array => this.timeSheets = array);
   }
 
-  getTimeSheets(): void {
-    this.timeSheets = [];
-    this.apiService.getTimeSheets()
-      .subscribe(timeSheets => {
-        timeSheets.forEach(sheet => {
-          this.timeSheets.push(new TimeSheet().deserialize(sheet))
-        })
-      });
-  }
   deleteTimeSheet(timeSheet: TimeSheet): void {
     const id = this.timeSheets.indexOf(timeSheet);
     this.timeSheets.splice(id, 1);
