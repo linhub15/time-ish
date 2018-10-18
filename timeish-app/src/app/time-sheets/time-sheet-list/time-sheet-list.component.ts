@@ -32,6 +32,12 @@ export class TimeSheetListComponent implements OnInit {
     this.apiService.deleteTimeSheet(timeSheet.id);
   }
 
+  statusIcon(status: string) {
+    if (status === 'Issued') { return 'panorama_fish_eye' }
+    else if (status === 'Submitted') { return 'check_circle_outline' }
+    else if (status === 'Approved') { return 'check_circle' }
+    else { return '' }
+  }
   openDialog(): void {
     const employees$ = this.employeeService.getEmployees();
     const dialogRef = this.dialog.open(AddTimeSheetDialogComponent, {
