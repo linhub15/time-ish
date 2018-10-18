@@ -9,15 +9,6 @@ mat-list-item:focus-within button.hidden-btn
     opacity: 1;
 }
 
-mat-panel-title {
-    width: 30em;
-    padding: 0 10px;
-}
-
-mat-panel-description {
-    width: 100%;
-}
-
 mat-form-field, button {
     margin: 0 10px 10px 10px;
 }
@@ -27,3 +18,4 @@ mat-form-field, button {
     opacity: 0;
     transition: visibility 0s, opacity 0.14s linear;
 }
+

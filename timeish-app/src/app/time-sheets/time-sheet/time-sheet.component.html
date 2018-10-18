@@ -6,11 +6,13 @@
 <div>Total Pay: {{timeSheet?.totalPay()}}</div>
 <mat-list>
   <app-activity #activities *ngFor="let activity of timeSheet?.activities"
-      [activity]="activity" 
+      [activity]="activity"
+      [isSubmitted]="(this.timeSheet?.submitted)"
+      [hourlyPay]="timeSheet?.employee.hourlyPay"
       (deleteActivity)="deleteActivity($event)" 
       (addActivity)="addActivity()"></app-activity>
 </mat-list>
-<div *ngIf="!submitted">
+<div *ngIf="!this.timeSheet?.submitted">
   <button mat-raised-button
       (click)="save()">Save</button>
   <button mat-raised-button color="primary"

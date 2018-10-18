@@ -37,7 +37,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   private format = "YYYY-MM-DD";
   @Input() public placeholder: string = "Select Date";
   @Input() _dateValue: string = null;
-
+  @Input() disabled: boolean;
   constructor() { }
   
   get dateValue() {
