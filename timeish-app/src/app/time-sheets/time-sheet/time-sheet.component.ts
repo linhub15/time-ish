@@ -3,7 +3,6 @@ import { TimeSheet } from '../../models/time-sheet.model';
 import { ActivatedRoute } from '@angular/router';
 import { TimeSheetsService } from '../time-sheets.service';
 import { ActivityComponent } from '../activity/activity.component';
-import { Activity } from 'src/app/models/activity.model';
 
 @Component({
   selector: 'app-time-sheet',
@@ -29,9 +28,9 @@ export class TimeSheetComponent implements OnInit {
   getTimeSheet(): void {
     // the (+) operator converts string to number
     const id: number = +this.route.snapshot.paramMap.get('id');
-    this.apiService.getTimeSheet(id).subscribe(timeSheet => {
-      this.timeSheet = new TimeSheet().deserialize(timeSheet);
-      if (!this.timeSheet.hasActivities()) { this.timeSheet.addActivity() }
+    this.apiService.getTimeSheet(id).subscribe(
+        timeSheet => { this.timeSheet = timeSheet;
+        !this.timeSheet.hasActivities() ? this.timeSheet.addActivity() : null;
     });
   }
 

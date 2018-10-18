@@ -31,7 +31,7 @@ export class TimeSheetsService {
 
   // GET /api/timesheets/{id}
   getTimeSheet(id: number): Observable<TimeSheet> {
-    return this.http.get<TimeSheet>(this._timeSheetUrl.concat(id.toString()));
+    return this.httpService.get<TimeSheet>(this.resource, id, TimeSheet);
   }
 
   // POST

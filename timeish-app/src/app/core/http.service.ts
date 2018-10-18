@@ -5,6 +5,9 @@ import { map } from "rxjs/operators";
 import { Deserializable } from "../models/deserializable.model";
 
 
+/**
+ * @description Sends HTTP requests and deserializes responses
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +35,14 @@ export class HttpService implements OnInit {
           return newArray;
         })
       );
+  }
+
+  get<T extends Deserializable>(resource: string, id: number, model: new () => T)
+    : Observable<T> {
+      let url = this.buildUrl(resource, id.toString());
+      return this.http.get<T>(url).pipe(
+          map(obj => {return new model().deserialize(obj)})
+        );
   }
 
   add<T extends Deserializable>(resource: string, newObject, model: new () => T)
