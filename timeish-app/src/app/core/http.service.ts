@@ -28,9 +28,10 @@ export class HttpService implements OnInit {
       : Observable<Array<T>> {
     return this.http.get<Array<T>>(this.buildUrl(resource))
       .pipe(map(array => {
-        let newArray = [];
-        array.forEach(item => newArray.push(new model().deserialize(item)));
-        return newArray;
+        array.forEach(function(item, index, array) {
+          array[index] = new model().deserialize(item);
+        })
+        return array;
       }));
   }
 
@@ -48,17 +49,17 @@ export class HttpService implements OnInit {
         .pipe(map(obj => {return new model().deserialize(obj)}));
   }
 
-  delete(resource: string, id: number): Observable<any> {
-    if (!resource || !id) { console.log("required params"); return; }
-    const url = this.buildUrl(resource, id.toString());
-    return this.http.delete(url);
-  }
-
   update<T extends Deserializable>(resource: string, object: T, model: new () => T): Observable<T> {
     if (!object.id) { return }
     const url = this.buildUrl(resource, object.id.toString());
     return this.http.put(url, object)
         .pipe(map(obj => {return new model().deserialize(obj)}));;
+  }
+
+  delete(resource: string, id: number): Observable<any> {
+    if (!resource || !id) { console.log("required params"); return; }
+    const url = this.buildUrl(resource, id.toString());
+    return this.http.delete(url);
   }
 
   private buildUrl(...resource: string[]): string {

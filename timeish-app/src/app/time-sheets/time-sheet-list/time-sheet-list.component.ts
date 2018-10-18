@@ -22,7 +22,7 @@ export class TimeSheetListComponent implements OnInit {
       public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.apiService.getTimeSheets()
+    this.apiService.list()
         .subscribe(array => this.timeSheets = array);
   }
 
@@ -41,7 +41,7 @@ export class TimeSheetListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(timeSheet => {
       if (!timeSheet) { return }
-      this.apiService.postTimeSheet(timeSheet)
+      this.apiService.add(timeSheet)
           .subscribe(sheet => {
             sheet = new TimeSheet().deserialize(sheet);
             this.timeSheets.push(sheet);

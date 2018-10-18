@@ -28,7 +28,7 @@ export class TimeSheetComponent implements OnInit {
   getTimeSheet(): void {
     // the (+) operator converts string to number
     const id: number = +this.route.snapshot.paramMap.get('id');
-    this.apiService.getTimeSheet(id).subscribe(
+    this.apiService.get(id).subscribe(
         timeSheet => { this.timeSheet = timeSheet;
         !this.timeSheet.hasActivities() ? this.timeSheet.addActivity() : null;
     });
@@ -44,7 +44,7 @@ export class TimeSheetComponent implements OnInit {
         .findIndex(activity => activity.id == activityId)
     this.timeSheet.activities.splice(index, 1);
     if (!activityId) { return } // Can't delete what doesn't exist
-    this.apiService.deleteActivity(activityId).subscribe();
+    this.apiService.deleteActivity(activityId);
   }
 
   save() {
