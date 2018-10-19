@@ -3,10 +3,12 @@
   <mat-card class="flex-row" mat-ripple (click)="openReviewDialog(timeSheet)">
     <div class="timeSheet">
 
-      <h3 class="name">{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}}</h3>
+      <h3 class="name">{{timeSheet.employee.fullName()}}</h3>
+
+      <span>${{timeSheet.totalPay()}}</span>
 
       <mat-chip-list>
-        <mat-chip><mat-icon>{{statusIcon(timeSheet.status())}}</mat-icon>&nbsp;{{timeSheet.status()}}</mat-chip>
+        <mat-chip>{{timeSheet.status()}}</mat-chip>
       </mat-chip-list>
 
     </div>

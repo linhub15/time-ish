@@ -1,4 +1,16 @@
-<h2 mat-dialog-title>Review Time Sheet</h2>
+<div class="dialog-header">
+  <h2 mat-dialog-title>Review</h2>
+
+  <div>
+    <a routerLink="/timesheets/{{data.timeSheet.id}}" 
+        (click)="this.dialogRef.close()" mat-icon-button>
+      <mat-icon>edit</mat-icon></a>
+    <button mat-icon-button mat-dialog-close><mat-icon>delete</mat-icon></button>
+  </div>
+</div>
+  
+
+
 <mat-dialog-content>
   <h3>{{data.timeSheet.employee.fullName()}}</h3>
 
@@ -21,7 +33,7 @@
 
     <ng-container matColumnDef="pay">
       <th mat-header-cell *matHeaderCellDef>Pay</th>
-      <td mat-cell *matCellDef="let activity">{{activity.pay}}</td>
+      <td mat-cell *matCellDef="let activity">${{activity.pay}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -61,6 +61,7 @@ export class TimeSheetListComponent implements OnInit {
       autoFocus: false,
       data: {timeSheet: timeSheet}
     });
+    // Can receive Approval, delete, or not re-issue
     dialogRef.afterClosed().subscribe();
   }
 }

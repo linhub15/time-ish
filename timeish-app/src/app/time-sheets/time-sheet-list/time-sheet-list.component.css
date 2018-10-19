@@ -15,8 +15,15 @@ mat-card:hover > .card-actions {
 .timeSheet {
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+.timeSheet > span {
+    min-width: 3em;
+}
+.timeSheet > h3 {
+    font-weight: 400;
+    min-width: 7em;
+    width: 100%;
 }
 
 mat-chip > mat-icon {
@@ -38,4 +45,8 @@ button#addTimeSheet {
     bottom: 25px;
 }
 
-
+@media only screen and (max-width: 768px) {
+    .card-actions {
+        display: none;
+    }
+}

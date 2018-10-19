@@ -17,17 +17,18 @@
 }
 
 .name {
-    width: 20em;
-    padding: 0 2em;
+    min-width: 8em;
+    padding-right: 1em;
 }
 
 .email {
+    min-width: 18em;
     width: 100%;
 }
 
 .pay {
-    width: 10em;
-    padding: 0 2em;
+    min-width: 5em;
+    padding: 0 1em;
     text-align: right;
 }
 #addNewEmployee {
