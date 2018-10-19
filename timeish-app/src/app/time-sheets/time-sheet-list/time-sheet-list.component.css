@@ -15,16 +15,19 @@ mat-card:hover > .card-actions {
 .timeSheet {
     width: 100%;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
+    align-items: center;
 }
 
 mat-chip > mat-icon {
     padding-right: 10px;
 }
 .card-actions {
+    display: flex;
+    align-items: center;
+    
     margin-left: 2em;
     width: 8em;
-
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.14s linear;
