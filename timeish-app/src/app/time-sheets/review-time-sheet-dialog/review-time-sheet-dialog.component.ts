@@ -4,7 +4,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 export interface ReviewDialogData {
+  approved: boolean;
+  deleted: boolean;
+  rejected: boolean;
   timeSheet: TimeSheet;
+  
 }
 
 @Component({
@@ -20,7 +24,18 @@ export class ReviewTimeSheetDialogComponent implements OnInit {
   ngOnInit() {}
 
   approve() {
-    // Set approved time
-    // Update time sheet
+    this.data.approved = true;
+    this.data.timeSheet.approved = new Date();
+    this.dialogRef.close(this.data);
+  }
+
+  reject() {
+    this.data.rejected = true;
+    this.dialogRef.close(this.data);
+  }
+
+  delete() {
+    this.data.deleted = true;
+    this.dialogRef.close(this.data);
   }
 }

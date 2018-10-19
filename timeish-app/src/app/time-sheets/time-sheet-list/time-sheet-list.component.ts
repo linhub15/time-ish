@@ -7,7 +7,7 @@ import { TimeSheetsService } from '../time-sheets.service';
 import { EmployeeService } from 'src/app/employees/employee.service';
 
 import { AddTimeSheetDialogComponent } from '../add-time-sheet-dialog/add-time-sheet-dialog.component';
-import { ReviewTimeSheetDialogComponent } from '../review-time-sheet-dialog/review-time-sheet-dialog.component';
+import { ReviewTimeSheetDialogComponent, ReviewDialogData } from '../review-time-sheet-dialog/review-time-sheet-dialog.component';
 
 @Component({
   selector: 'app-time-sheet-list',
@@ -62,6 +62,12 @@ export class TimeSheetListComponent implements OnInit {
       data: {timeSheet: timeSheet}
     });
     // Can receive Approval, delete, or not re-issue
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe((data: ReviewDialogData) => {
+      if (!data) { return } // clicked outside, nothing passed through
+      if (data.approved) {this.apiService.update(data.timeSheet).subscribe()}
+      else if (data.rejected) { } /* set it to be rejected */ 
+      else if (data.deleted) {this.deleteTimeSheet(data.timeSheet)}
+      else {/*Closed with no option selected*/}
+    });
   }
 }
