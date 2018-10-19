@@ -1,6 +1,6 @@
 <div *ngFor="let timeSheet of timeSheets">
 
-  <mat-card class="flex-row" mat-ripple>
+  <mat-card class="flex-row" mat-ripple (click)="openReviewDialog(timeSheet)">
     <div class="timeSheet">
 
       <h3 class="name">{{timeSheet.employee.fullName()}} ${{timeSheet.totalPay()}}</h3>

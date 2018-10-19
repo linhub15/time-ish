@@ -7,6 +7,7 @@ import { TimeSheetsService } from '../time-sheets.service';
 import { EmployeeService } from 'src/app/employees/employee.service';
 
 import { AddTimeSheetDialogComponent } from '../add-time-sheet-dialog/add-time-sheet-dialog.component';
+import { ReviewTimeSheetDialogComponent } from '../review-time-sheet-dialog/review-time-sheet-dialog.component';
 
 @Component({
   selector: 'app-time-sheet-list',
@@ -53,5 +54,13 @@ export class TimeSheetListComponent implements OnInit {
             this.timeSheets.push(sheet);
           });
     })
+  }
+
+  openReviewDialog(timeSheet: TimeSheet): void {
+    const dialogRef = this.dialog.open(ReviewTimeSheetDialogComponent, {
+      autoFocus: false,
+      data: {timeSheet: timeSheet}
+    });
+    dialogRef.afterClosed().subscribe();
   }
 }

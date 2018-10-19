@@ -9,7 +9,7 @@ import {MatButtonModule, MatCardModule,
         MatAutocompleteModule, MatIconModule,
         MatToolbarModule, MatSidenavModule, 
         MatListModule, MatTooltipModule,
-        MatChipsModule,
+        MatChipsModule, MatTableModule,
       } from '@angular/material';
 import {MatRippleModule} from '@angular/material/core'
 
@@ -19,7 +19,7 @@ import {MatRippleModule} from '@angular/material/core'
     MatNativeDateModule, MatExpansionModule, MatDialogModule,
     MatAutocompleteModule, MatIconModule, MatToolbarModule,
     MatSidenavModule, MatListModule, MatTooltipModule,
-    MatChipsModule, MatRippleModule
+    MatChipsModule, MatRippleModule, MatTableModule,
   ];
 
 @NgModule({
