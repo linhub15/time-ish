@@ -10,6 +10,7 @@ import {MatButtonModule, MatCardModule,
         MatToolbarModule, MatSidenavModule, 
         MatListModule, MatTooltipModule,
         MatChipsModule, MatTableModule,
+        MatMenuModule,
       } from '@angular/material';
 import {MatRippleModule} from '@angular/material/core'
 
@@ -20,6 +21,7 @@ import {MatRippleModule} from '@angular/material/core'
     MatAutocompleteModule, MatIconModule, MatToolbarModule,
     MatSidenavModule, MatListModule, MatTooltipModule,
     MatChipsModule, MatRippleModule, MatTableModule,
+    MatMenuModule,
   ];
 
 @NgModule({

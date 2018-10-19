@@ -2,10 +2,21 @@
   <h2 mat-dialog-title>Review</h2>
 
   <div>
-    <a routerLink="/timesheets/{{data.timeSheet.id}}" 
-        (click)="this.dialogRef.close()" mat-icon-button>
-      <mat-icon>edit</mat-icon></a>
-    <button mat-icon-button mat-dialog-close><mat-icon>delete</mat-icon></button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item
+        routerLink="/timesheets/{{data.timeSheet.id}}"
+        (click)="this.dialogRef.close()">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+        <button mat-menu-item mat-dialog-close>
+          <mat-icon>delete</mat-icon>
+          <span>delete</span>
+        </button>
+      </mat-menu>
   </div>
 </div>
   
@@ -43,5 +54,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
+  <button mat-button mat-dialog-close color="primary">Cancel</button>
   <button mat-button (click)="approve()" mat-dialog-close>Approve</button>
 </mat-dialog-actions>
