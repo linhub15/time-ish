@@ -11,12 +11,8 @@
 
 
   <mat-form-field floatLabel="never" id="hourlyPay">
-    <input [(ngModel)]="activity.hours" 
-            id="hours"
-            matInput placeholder="Hours" 
-            type="number" 
-            [disabled]="isSubmitted"
-            min="0" max="24">
+    <input matInput [(ngModel)]="activity.hours" [disabled]="isSubmitted"
+        id="hours" type="number" placeholder="Hours" min="0" max="24">
     <div matSuffix id="pay" matTooltip="Pay" matTooltipPosition="above">
       {{showPay()}}</div>
   </mat-form-field>
