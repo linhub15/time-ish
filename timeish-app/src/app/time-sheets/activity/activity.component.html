@@ -13,12 +13,12 @@
   <mat-form-field floatLabel="never" id="hourlyPay">
     <input [(ngModel)]="activity.hours" id="hours"
         matInput placeholder="Hours" type="number" [disabled]="isSubmitted">
-    <div matSuffix id="pay" matTooltip="Pay" matTooltipPosition="before">
+    <div matSuffix id="pay" matTooltip="Pay" matTooltipPosition="above">
       {{showPay()}}</div>
   </mat-form-field>
 
   
-  <div *ngIf="!isSubmitted">
+  <div class="list-item-actions" *ngIf="!isSubmitted">
       <button class="hidden-btn" mat-icon-button
       (click)="delete()" color="primary"><mat-icon>clear</mat-icon></button>
     
