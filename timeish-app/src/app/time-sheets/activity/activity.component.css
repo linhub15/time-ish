@@ -27,6 +27,13 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+#date {
+    width: auto;
+}
+#description {
+    width: 23em;
+}
 #hourlyPay {
     width: 9em;
 }

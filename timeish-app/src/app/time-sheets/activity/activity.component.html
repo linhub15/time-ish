@@ -1,10 +1,10 @@
 <mat-list-item>
 
-  <app-date-picker [(ngModel)]="activity.date" [disabled]="isSubmitted">
+  <app-date-picker [(ngModel)]="activity.date" id="date" [disabled]="isSubmitted">
   </app-date-picker>
 
 
-  <mat-form-field floatLabel="never">
+  <mat-form-field floatLabel="never" id="description">
     <input [(ngModel)]="activity.description"
         matInput placeholder="Description" type="text" [disabled]="isSubmitted">
   </mat-form-field>
