@@ -24,7 +24,8 @@ export class ActivityComponent {
   showPay(): string {
     if (this.activity.hours) {
       this.calculatePay();
-      return '$' + this.activity.pay;
+      const hourString = this.activity.hours > 1 ? 'Hours' : 'Hour';
+      return hourString + ' ($' + this.activity.pay + ')';
     }
   }
 

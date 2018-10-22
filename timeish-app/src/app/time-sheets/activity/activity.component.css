@@ -19,6 +19,20 @@ mat-form-field, button {
     transition: visibility 0s, opacity 0.14s linear;
 }
 
-#pay {
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#hourlyPay {
+    width: 9em;
+}
+#hours {
     width: 3em;
+}
+#pay {
+    width: 6em;
 }

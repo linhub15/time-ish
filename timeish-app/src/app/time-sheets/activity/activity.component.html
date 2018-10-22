@@ -4,22 +4,20 @@
   </app-date-picker>
 
 
-  <mat-form-field>
+  <mat-form-field floatLabel="never">
     <input [(ngModel)]="activity.description"
         matInput placeholder="Description" type="text" [disabled]="isSubmitted">
   </mat-form-field>
 
 
-  <mat-form-field>
-    <input [(ngModel)]="activity.hours"
+  <mat-form-field floatLabel="never" id="hourlyPay">
+    <input [(ngModel)]="activity.hours" id="hours"
         matInput placeholder="Hours" type="number" [disabled]="isSubmitted">
     <div matSuffix id="pay" matTooltip="Pay" matTooltipPosition="before">
       {{showPay()}}</div>
   </mat-form-field>
 
   
-  
-
   <div *ngIf="!isSubmitted">
       <button class="hidden-btn" mat-icon-button
       (click)="delete()" color="primary"><mat-icon>clear</mat-icon></button>

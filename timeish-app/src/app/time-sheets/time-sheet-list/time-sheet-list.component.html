@@ -15,7 +15,8 @@
 
     <div class="card-actions">
       <button mat-icon-button
-          routerLink="/timesheets/{{timeSheet.id}}">
+          routerLink="/timesheets/{{timeSheet.id}}"
+          [disabled]="timeSheet.status() === 'Submitted' || timeSheet.status() === 'Approved'">
         <mat-icon>edit</mat-icon></button>
       <button mat-icon-button color="warning"
           (click)="deleteTimeSheet(timeSheet)">

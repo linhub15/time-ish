@@ -38,4 +38,16 @@ export class ReviewTimeSheetDialogComponent implements OnInit {
     this.data.deleted = true;
     this.dialogRef.close(this.data);
   }
+
+  showTable(): boolean {
+    return this.data.timeSheet.hasActivities();
+  }
+
+  showActions(): boolean {
+    // BR: Able to approve time sheets that:
+    // have activities, is submitted, is not approved
+    const submitted = this.data.timeSheet.submitted ? true : false;
+    const approved = this.data.timeSheet.approved ? true : false;
+    return this.data.timeSheet.hasActivities() && submitted && !approved;
+  }
 }
