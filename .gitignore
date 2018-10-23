@@ -7,6 +7,7 @@ nupkg/
 
 # Visual Studio Code
 # .vscode       ## Allow launch.json, settings,json, tasks.json to be shared
+wwwroot/
 
 # User-specific files
 *.suo

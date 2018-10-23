@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/api/bin/Debug/netcoreapp2.1/api.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/api",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

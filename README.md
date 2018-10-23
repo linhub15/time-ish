@@ -1,9 +1,12 @@
-# Time-ish
-A Small Business Time Sheet Management Web App
+# Timeish API- A Small Business Time Sheet Management Web App
 
 Before building the project ensure all dependencies are installed.
-First build the Angular App `ng build --prod` this will build the static files into `api/wwwroot`
-Then run the C# debugger. The VSCode launch.json should auto build and run the C# web api and serve the static angular app.
+
+1. Build the Angular App `ng build --prod`
+2. Copy the files into  `/timeish-api/wwwroot/`
+    * by default wwwroot/ is ignored from git, you will need to add it
+
+Then run the C# debugger. The VSCode `launch.json` should build and run the C# web api and serve the static angular app.
 
 ## Project Dependencies
 * Microsoft .NET Core v2.1
