@@ -2,9 +2,9 @@
 <mat-dialog-content>
   <mat-form-field>
     <input matInput type="text" placeholder="Employee Name" aria-label="Employee" [matAutocomplete]="auto"
-    [(ngModel)]="selectedEmployee" [autofocus]="false">
+     [formControl]="employeeInput" [autofocus]="false" (blur)="autoComplete()">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFullName">
-      <mat-option *ngFor="let employee of (this.data.employees$ | async)" [value]="employee">
+      <mat-option *ngFor="let employee of (filteredOptions$ | async)" [value]="employee">
         {{employee.fullName()}}
       </mat-option>
     </mat-autocomplete>
@@ -12,6 +12,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <!-- The mat-dialog-close directive optionally accepts a
+     value as a result for the dialog. -->
   <button mat-button (click)="addNewTimeSheet()" mat-dialog-close>Add</button>
 </mat-dialog-actions>

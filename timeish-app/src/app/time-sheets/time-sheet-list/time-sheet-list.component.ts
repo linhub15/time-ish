@@ -8,6 +8,7 @@ import { EmployeeService } from 'src/app/employees/employee.service';
 
 import { AddTimeSheetDialogComponent } from '../add-time-sheet-dialog/add-time-sheet-dialog.component';
 import { ReviewTimeSheetDialogComponent, ReviewDialogData } from '../review-time-sheet-dialog/review-time-sheet-dialog.component';
+import { Employee } from 'src/app/models/employee.model';
 
 @Component({
   selector: 'app-time-sheet-list',
@@ -15,7 +16,6 @@ import { ReviewTimeSheetDialogComponent, ReviewDialogData } from '../review-time
   styleUrls: ['./time-sheet-list.component.css']
 })
 export class TimeSheetListComponent implements OnInit {
-
   timeSheets: TimeSheet[] = [];
   
   constructor(private apiService:TimeSheetsService,
@@ -39,8 +39,8 @@ export class TimeSheetListComponent implements OnInit {
     else if (status === 'Approved') { return 'check_circle' }
     else { return '' }
   }
-  openDialog(): void {
-    const employees$ = this.employeeService.getEmployees();
+  openAddDialog(): void {
+    let employees$ = this.employeeService.getEmployees(); //.subscribe(res => this.employees = res);
     const dialogRef = this.dialog.open(AddTimeSheetDialogComponent, {
       autoFocus: false,
       data: {employees$: employees$}
