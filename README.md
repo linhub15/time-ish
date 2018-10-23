@@ -10,7 +10,7 @@ Then run the C# debugger. The VSCode launch.json should auto build and run the C
 * Microsoft Entity Framework Core v2.1.4
 * MySql v8.0.12
 * Node.js v8.11.4
-* Angular Cli v6.2.4
+* Angular Cli v7.0.0
 
 
 ## Tools
