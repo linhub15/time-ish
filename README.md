@@ -1,6 +1,6 @@
 # Timeish API- A Small Business Time Sheet Management Web App
 
-Timeish Angular App [here](https://github.com/linhub15/timeish-api) - Consumes this API
+Timeish Angular App [here](https://github.com/linhub15/timeish-app) - Consumes this API
 
 Before building the project ensure all dependencies are installed.
 
