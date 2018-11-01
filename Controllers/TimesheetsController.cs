@@ -20,7 +20,6 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<TimeSheet>> Get()
         {
-            
             return _context.TimeSheets
                 .Include(t => t.PayPeriod)
                 .Include(t => t.Activities)
@@ -44,6 +43,7 @@ namespace api.Controllers
         [HttpPost]
         public ActionResult<TimeSheet> Post([FromBody] TimeSheet timeSheet)
         {
+            TryValidateModel(timeSheet);
             _context.TimeSheets.Add(timeSheet);
             _context.SaveChanges();
             return _context.TimeSheets
@@ -57,6 +57,7 @@ namespace api.Controllers
         public ActionResult<TimeSheet> Put(int id, [FromBody] TimeSheet timeSheet)
         {
             timeSheet.Id = id; //URL ID overrides PUT request Body
+            TryValidateModel(timeSheet);
             _context.TimeSheets.Update(timeSheet);
             _context.SaveChanges();
             return _context.TimeSheets.SingleOrDefault(t => t.Id == id);

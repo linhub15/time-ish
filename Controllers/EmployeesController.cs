@@ -34,6 +34,7 @@ namespace api.Controllers
         [HttpPost]
         public ActionResult<Employee> Post([FromBody] Employee employee)
         {
+            TryValidateModel(employee);
             _context.Employees.Add(employee);
             _context.SaveChanges();
             return employee;
@@ -44,6 +45,7 @@ namespace api.Controllers
         public ActionResult<Employee> Put(int id, [FromBody] Employee employee)
         {
             employee.Id = id;
+            TryValidateModel(employee);
             _context.Employees.Update(employee);
             _context.SaveChanges();
             return employee;

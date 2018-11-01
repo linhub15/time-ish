@@ -35,21 +35,20 @@ namespace api
 
 
             services.AddDbContextPool<TimeishContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("MySqlProvider"),
+                options => options.UseMySql(Configuration.GetConnectionString("devConnection"),
                 mySqlOptions => {
                     mySqlOptions.ServerVersion(new Version(8,0,12), ServerType.MySql);
                 })
             );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime
+        // Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                 // TODO: Remove in prod - For Development only
                 app.UseCors(builder =>
                 {
                     builder.AllowAnyOrigin();

@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -8,10 +9,10 @@ namespace api.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public Decimal HourlyPay { get; set; }
+        [Required] [StringLength(25)] public string FirstName { get; set; }
+        [Required] [StringLength(25)] public string LastName { get; set; }
+        [Required] [EmailAddress] public string Email { get; set; }
+        [Required] [Range(0,100)] public Decimal HourlyPay { get; set; }
         [IgnoreDataMember] protected string HashedPassword { get; set; }
             // ! Must not expose HashedPassword
             // MD5 128-bit hash CHAR(32)
