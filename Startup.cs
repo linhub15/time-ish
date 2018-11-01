@@ -33,8 +33,8 @@ namespace api
                 });
             
             string connectionString;
-            connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb");
-            if (connectionString == null || !(connectionString.Length > 0)) {
+            connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_default");
+            if (connectionString == null || connectionString.Length == 0) {
                 connectionString = Configuration.GetConnectionString("default");
             }
             services.AddDbContextPool<TimeishContext>(
