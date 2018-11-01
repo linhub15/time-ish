@@ -35,7 +35,7 @@ namespace api
             string connectionString;
             connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb");
             if (connectionString == null || !(connectionString.Length > 0)) {
-                connectionString = Configuration.GetConnectionString("devConnection");
+                connectionString = Configuration.GetConnectionString("default");
             }
             services.AddDbContextPool<TimeishContext>(
                 options => options.UseMySql(connectionString,
