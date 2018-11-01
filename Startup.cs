@@ -28,14 +28,17 @@ namespace api
             services.AddCors(); // Used for Development testing
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-            // Prevent self reference exception when using LINQ to get a collection
                 .AddJsonOptions(options => {
                      options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
-
-
+            
+            string connectionString;
+            connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb");
+            if (connectionString == null || !(connectionString.Length > 0)) {
+                connectionString = Configuration.GetConnectionString("devConnection");
+            }
             services.AddDbContextPool<TimeishContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("devConnection"),
+                options => options.UseMySql(connectionString,
                 mySqlOptions => {
                     mySqlOptions.ServerVersion(new Version(8,0,12), ServerType.MySql);
                 })
