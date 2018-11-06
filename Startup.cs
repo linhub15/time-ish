@@ -14,15 +14,24 @@ namespace api
 {
     public class Startup
     {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_default");
+            if (_connectionString == null)
+            {
+                _connectionString = Configuration.GetConnectionString("default");
+            }
+            if (_connectionString == null) 
+            { 
+                throw new Exception("Missing db connection string. Check environment variables or timeish-proxy/local.settings.json");
+            }
         }
 
         public IConfiguration Configuration { get; }
+        private string _connectionString { get; } 
 
-        // This method gets called by the runtime
-        // Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(); // Used for Development testing
@@ -32,21 +41,10 @@ namespace api
                      options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
             
-            string connectionString;
-            connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_default");
-            if (connectionString == null || connectionString.Length == 0) {
-                connectionString = Configuration.GetConnectionString("default");
-            }
             services.AddDbContextPool<TimeishContext>(
-                options => options.UseMySql(connectionString,
-                mySqlOptions => {
-                    mySqlOptions.ServerVersion(new Version(8,0,12), ServerType.MySql);
-                })
-            );
+                options => options.UseMySql(_connectionString));
         }
 
-        // This method gets called by the runtime
-        // Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -63,25 +61,8 @@ namespace api
             {
                 app.UseHsts();
             }
-
-            app.UseStaticFiles();   // Allows wwwroot files to be served
-            app.UseDefaultFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
-            // ensures index.html is served for any requests with a path other than "/"
-            // prevents 404 when user refreshes browser
-            app.Use(async (context, next) => 
-            {
-                if (context.Request.Path.HasValue && context.Request.Path.Value != "/")
-                {
-                    context.Response.ContentType = "text/html";
-                    await context.Response.SendFileAsync(
-                        env.ContentRootFileProvider.GetFileInfo("wwwroot/index.html")
-                    );
-                    return;
-                }
-                await next();
-            });
         }
     }
 }
