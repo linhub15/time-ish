@@ -1,5 +1,6 @@
 ﻿using System;
 using api.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,10 +37,12 @@ namespace api
         {
             services.AddCors(); // Used for Development testing
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddJsonOptions(options => {
-                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                });
+            services.AddMvc()
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>())
+            .AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             
             services.AddDbContextPool<TimeishContext>(
                 options => options.UseMySql(_connectionString));
