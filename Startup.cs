@@ -1,5 +1,4 @@
 ﻿using System;
-using api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
+using api.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace api
 {
@@ -35,17 +37,22 @@ namespace api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(); // Used for Development testing
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddJsonOptions(options => {
-                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                });
             
             services.AddDbContextPool<TimeishContext>(
                 options => options.UseMySql(_connectionString));
+
+            services.AddIdentity<IdentityUser,IdentityRole>()
+                .AddEntityFrameworkStores<TimeishContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options => {
+                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, TimeishContext context)
         {
             if (env.IsDevelopment())
             {
@@ -61,8 +68,12 @@ namespace api
             {
                 app.UseHsts();
             }
+            
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
+
+            context.Database.EnsureCreated();
         }
     }
 }

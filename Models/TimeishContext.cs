@@ -1,9 +1,10 @@
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    public class TimeishContext : DbContext
+    public class TimeishContext : IdentityDbContext
     {
         public TimeishContext(DbContextOptions<TimeishContext> options)
             : base(options)
@@ -16,6 +17,7 @@ namespace api.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>().HasData(
                 new Employee { Id = 1, FirstName = "Hubert", LastName = "Lin", Email = "hubert.lin@example.com", HourlyPay = 25.00M },
                 new Employee { Id = 2, FirstName = "John", LastName = "Smith", Email = "John.Smith@example.com", HourlyPay = 25.00M },
