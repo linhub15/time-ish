@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System;
 using Microsoft.Extensions.Configuration;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -34,10 +35,19 @@ namespace api.Controllers
             _configuration = configuration;
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<IdentityUser>> Users()
         {
             return _context.Users;
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult<string> CurrentUser()
+        {
+            return HttpContext.User.Identity.Name;
         }
 
         [HttpPost]
@@ -84,7 +94,7 @@ namespace api.Controllers
         [HttpPost]
         public ActionResult<object> Register([FromBody] Register register)
         {
-            IdentityUser user = new IdentityUser 
+            IdentityUser user = new IdentityUser
             {
                 UserName = register.userName,
                 Email = register.email

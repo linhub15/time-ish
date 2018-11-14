@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
