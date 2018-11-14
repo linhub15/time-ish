@@ -1,5 +1,4 @@
-
-namespace api.Models
+namespace api.Core.Entities
 {
     public class Login
     {

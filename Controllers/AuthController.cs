@@ -1,4 +1,3 @@
-using api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +11,9 @@ using System;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+// Prject References
+using api.Infrastructure.DataAccess;
+using api.Core.Entities;
 
 namespace api.Controllers
 {

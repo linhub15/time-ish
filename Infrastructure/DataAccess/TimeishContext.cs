@@ -2,7 +2,9 @@ using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Models
+using api.Core.Entities;
+
+namespace api.Infrastructure.DataAccess
 {
     public class TimeishContext : IdentityDbContext
     {

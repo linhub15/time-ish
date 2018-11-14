@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using api.Core.Entities;
+using api.Infrastructure.DataAccess;
 
 namespace api.Controllers
 {
