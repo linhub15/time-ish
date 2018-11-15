@@ -1,4 +1,4 @@
-namespace api.Core.Entities
+namespace Tymish.Core.Entities
 {
     public class Login
     {

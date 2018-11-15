@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using api.Core.Entities;
+using Tymish.Core.Entities;
 
-namespace api.Core.Interfaces
+namespace Tymish.Core.Interfaces
 {
     public interface IRepository
     {

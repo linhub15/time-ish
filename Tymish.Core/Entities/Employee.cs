@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using FluentValidation;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace api.Core.Entities 
+namespace Tymish.Core.Entities
 {
     public class Employee : BaseEntity
     {

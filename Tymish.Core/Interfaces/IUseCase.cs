@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace api.Core.Interfaces
+namespace Tymish.Core.Interfaces
 {
     public interface IUseCase<TRequest, TResponse>
     {

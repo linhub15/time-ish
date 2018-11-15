@@ -2,10 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
-using api.Core.Entities;
-using api.Core.Interfaces;
+using Tymish.Core.Entities;
+using Tymish.Core.Interfaces;
 
-namespace api.Infrastructure.DataAccess
+namespace Tymish.Infrastructure.DataAccess
 {
     public class EfCoreRepository : IRepository
     {

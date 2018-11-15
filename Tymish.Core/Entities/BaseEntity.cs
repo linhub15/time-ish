@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace api.Core.Entities
+namespace Tymish.Core.Entities
 {
     public abstract class BaseEntity
     {
