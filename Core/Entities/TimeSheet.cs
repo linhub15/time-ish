@@ -5,10 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Core.Entities
 {
-    public class TimeSheet
+    public class TimeSheet : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public DateTime Issued { get; set; }
         public DateTime? Submitted { get; set; }
         public DateTime? Approved { get; set; }
@@ -20,10 +18,8 @@ namespace api.Core.Entities
         public virtual IEnumerable<Activity> Activities { get; set;}
     }
 
-    public class Activity
+    public class Activity : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         [Required] public DateTime Date { get; set; }
         [Required] [Range(0,24)] public int Hours { get; set; }
         public string Description { get; set; }
@@ -31,10 +27,8 @@ namespace api.Core.Entities
         [Required] public int TimeSheetId { get; set; }
     }
 
-    public class PayPeriod
+    public class PayPeriod : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
     }
