@@ -11,7 +11,8 @@ using System;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
-// Prject References
+
+// Project References
 using Tymish.Infrastructure.DataAccess;
 using Tymish.Core.Entities;
 
@@ -55,7 +56,7 @@ namespace Tymish.Api.Controllers
         [HttpPost]
         public async Task<object> Login([FromBody] Login login)
         {
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            TryValidateModel(login);
             
             var result = await _signInManager.PasswordSignInAsync(login.userName, login.password, false, false);
 

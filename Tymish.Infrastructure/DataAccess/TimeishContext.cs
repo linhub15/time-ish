@@ -21,8 +21,8 @@ namespace Tymish.Infrastructure.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new TimeSheetConfiguration());
             
-
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>().HasData(
                 new Employee { Id = 1, FirstName = "Hubert", LastName = "Lin", Email = "hubert.lin@example.com", HourlyPay = 25.00M },
