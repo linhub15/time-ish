@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,8 +34,9 @@ namespace Tymish.Infrastructure.DataAccess
             return entity;
         }
 
-        public void Delete<T>(T entity) where T : BaseEntity
+        public void Delete<T>(int id) where T : BaseEntity
         {
+            T entity = _context.Set<T>().SingleOrDefault(e => e.Id == id);
             _context.Set<T>().Remove(entity);
             _context.SaveChanges();
         }

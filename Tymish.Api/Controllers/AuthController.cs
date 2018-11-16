@@ -12,10 +12,10 @@ using Microsoft.Extensions.Configuration;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 // Prject References
-using api.Infrastructure.DataAccess;
-using api.Core.Entities;
+using Tymish.Infrastructure.DataAccess;
+using Tymish.Core.Entities;
 
-namespace api.Controllers
+namespace Tymish.Api.Controllers
 {
     [Route("api/[Controller]/[Action]")]
     [ApiController]

@@ -3,34 +3,48 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using api.Core.Entities;
-using api.Infrastructure.DataAccess;
+using Tymish.Core.Entities;
+using Tymish.Core.UseCases;
+using Tymish.Infrastructure.DataAccess;
 
-namespace api.Controllers
+namespace Tymish.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-        private readonly TimeishContext _context;
-        public EmployeesController(TimeishContext context) 
+        private readonly IGetEmployee _getEmployee;
+        private readonly IListEmployees _listEmployees;
+        private readonly IAddEmployee _addEmpoloyee;
+        private readonly IUpdateEmployee _updateEmployee;
+        private readonly IDeleteEmployee _deleteEmployee;
+
+        public EmployeesController(
+            IGetEmployee getEmployee,
+            IListEmployees listEmployees,
+            IAddEmployee addEmployee,
+            IUpdateEmployee updateEmployee,
+            IDeleteEmployee deleteEmployee) 
         {
-            _context = context;
+            _getEmployee = getEmployee;
+            _listEmployees = listEmployees;
+            _addEmpoloyee = addEmployee;
+            _updateEmployee = updateEmployee;
+            _deleteEmployee = deleteEmployee;
         }
 
         // GET api/employees
         [HttpGet]
         public ActionResult<IEnumerable<Employee>> Get()
         {
-            return _context.Employees;
+            return _listEmployees.Execute(null);
         }
 
         // GET api/employees/:id
         [HttpGet("{id}")]
         public ActionResult<Employee> Get(int id)
         {
-            return _context.Employees
-                .SingleOrDefault(employee => employee.Id == id);
+            return _getEmployee.Execute(id);
         }
 
         // POST api/employees
@@ -38,9 +52,7 @@ namespace api.Controllers
         public ActionResult<Employee> Post([FromBody] Employee employee)
         {
             TryValidateModel(employee);
-            _context.Employees.Add(employee);
-            _context.SaveChanges();
-            return employee;
+            return _addEmpoloyee.Execute(employee);
         }
 
         // PUT api/employees/:id
@@ -49,18 +61,16 @@ namespace api.Controllers
         {
             employee.Id = id;
             TryValidateModel(employee);
-            _context.Employees.Update(employee);
-            _context.SaveChanges();
+            _updateEmployee.Execute(employee);
             return employee;
         }
 
-        // DELETE /api/employees/:id
+        // DELETE api/employees/:id
         [HttpDelete("{id}")]
-        public void Delete(int id) 
+        public ActionResult Delete(int id) 
         {
-            var Employee = _context.Employees.SingleOrDefault(e => e.Id == id);
-            _context.Employees.Remove(Employee);
-            _context.SaveChanges();
+            _deleteEmployee.Execute(id);
+            return Ok();
         }
     }
 }

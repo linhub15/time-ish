@@ -3,20 +3,16 @@ using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases
 {
-    public interface IAddEmployee : IUseCase<Employee, Employee> {  }
+    public interface IAddEmployee : IUseCase<Employee, Employee> { }
     
-    public class AddEmployee : IAddEmployee
+    public class AddEmployee : BaseUseCase, IAddEmployee
     {
-        private IRepository _employeeRepository;
+        public AddEmployee(IRepository repository) 
+            : base(repository) { }
 
-        public AddEmployee(IRepository employeeRepository)
+        public Employee Execute(Employee employee)
         {
-            _employeeRepository = employeeRepository;
-        }
-
-        public Employee Execute(Employee entity)
-        {
-            return _employeeRepository.Add<Employee>(entity);
+            return _repository.Add<Employee>(employee);
         }
     }
 }

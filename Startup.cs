@@ -15,10 +15,12 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 
-using api.Core.Entities;
-using api.Infrastructure.DataAccess;
+using Tymish.Core.Entities;
+using Tymish.Infrastructure.DataAccess;
+using Tymish.Core.Interfaces;
+using Tymish.Core.UseCases;
 
-namespace api
+namespace Tymish
 {
     public class Startup
     {
@@ -82,6 +84,15 @@ namespace api
             
             services.AddDbContextPool<TimeishContext>(
                 options => options.UseMySql(_connectionString));
+                
+            services.AddScoped<IRepository, EfCoreRepository>();
+
+            // Use Case Dependency Injection
+            services.AddScoped<IGetEmployee, GetEmployee>();
+            services.AddScoped<IListEmployees, ListEmployees>();
+            services.AddScoped<IAddEmployee, AddEmployee>();
+            services.AddScoped<IUpdateEmployee, UpdateEmployee>();
+            services.AddScoped<IDeleteEmployee, DeleteEmployee>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, TimeishContext context)

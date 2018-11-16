@@ -3,10 +3,10 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-using api.Core.Entities;
-using api.Infrastructure.DataAccess;
+using Tymish.Core.Entities;
+using Tymish.Infrastructure.DataAccess;
 
-namespace api.Controllers 
+namespace Tymish.Api.Controllers 
 {
     [Route("api/[controller]")]
     [ApiController]
