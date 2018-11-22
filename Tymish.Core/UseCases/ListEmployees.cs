@@ -5,7 +5,7 @@ using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases
 {
-    public interface IListEmployees : IUseCase<object, List<Employee>> { }
+    public interface IListEmployees : IExecutable<object, List<Employee>> { }
 
     public class ListEmployees : BaseUseCase, IListEmployees
     {

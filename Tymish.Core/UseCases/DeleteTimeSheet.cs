@@ -3,7 +3,7 @@ using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases
 {
-    public interface IDeleteTimeSheet : IUseCase<int, bool> {}
+    public interface IDeleteTimeSheet : IExecutable<int, bool> {}
 
     public class DeleteTimeSheet : BaseUseCase, IDeleteTimeSheet
     {

@@ -52,7 +52,7 @@ namespace Tymish.Api.Controllers
         public ActionResult<Employee> Post([FromBody] Employee employee)
         {
             TryValidateModel(employee);
-            return _addEmpoloyee.Execute(employee);
+            return _addEmpoloyee.Execute(employee).Data;
         }
 
         // PUT api/employees/:id

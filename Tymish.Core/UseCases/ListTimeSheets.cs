@@ -4,7 +4,7 @@ using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases
 {
-    public interface IListTimeSheets : IUseCase<object, List<TimeSheet>> {}
+    public interface IListTimeSheets : IExecutable<object, List<TimeSheet>> {}
 
     public class ListTimeSheets : BaseUseCase, IListTimeSheets
     {

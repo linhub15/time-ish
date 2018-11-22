@@ -3,7 +3,7 @@ using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases
 {
-    public interface IGetEmployee : IUseCase<int, Employee> { }
+    public interface IGetEmployee : IExecutable<int, Employee> { }
     
     public class GetEmployee : BaseUseCase, IGetEmployee
     {

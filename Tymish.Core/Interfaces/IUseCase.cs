@@ -3,7 +3,7 @@ using Tymish.Core.Entities;
 
 namespace Tymish.Core.Interfaces
 {
-    public interface IUseCase<TRequest, TResponse>
+    public interface IExecutable<TRequest, TResponse>
     {
         TResponse Execute(TRequest obj);
     }
