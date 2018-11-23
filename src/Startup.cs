@@ -31,12 +31,9 @@ namespace Tymish
             _connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_default");
             if (_connectionString == null)
             {
-                _connectionString = Configuration.GetConnectionString("default");
+                throw new Exception("Missing db connection string. Check environment variables in PROD or .vscode/launch.json in DEV");
             }
-            if (_connectionString == null) 
-            { 
-                throw new Exception("Missing db connection string. Check environment variables or timeish-proxy/local.settings.json");
-            }
+
         }
 
         public IConfiguration Configuration { get; }
