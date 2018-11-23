@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 // Project References
-using Tymish.Core.Entities;
+using Tymish.Core.DTOs;
 using Tymish.Infrastructure.DataAccess;
 using Tymish.Infrastructure.Authentication;
 
@@ -48,7 +48,6 @@ namespace Tymish.Api.Controllers
         {
             return _context.Users;
         }
-
 
         [Authorize]
         [HttpGet]

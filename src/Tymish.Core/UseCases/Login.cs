@@ -1,16 +1,24 @@
-using Tymish.Core.Entities;
+using Tymish.Core.DTOs;
 using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases
 {
-    public class Login : BaseUseCase
-    {
-        public Login(IRepository repository)
-            : base(repository) {}
+    public interface ILogin : IExecutable<LoginDTO, string>{}
 
-        public void Execute(LoginDTO userCredentials)
+    public class Login : BaseUseCase, ILogin
+    {
+        private readonly IAuthenticator<LoginDTO> _authenticator;
+
+        public Login(IRepository repository, IAuthenticator<LoginDTO> authenticator)
+            : base(repository)
         {
-            // TODO
+            _authenticator = authenticator;
+        }
+
+        public string Execute(LoginDTO userCredentials)
+        {
+            string JwtToken = _authenticator.Login(userCredentials);
+            return JwtToken;
         }
     }
 }

@@ -1,4 +1,4 @@
-using Tymish.Core.Entities;
+using Tymish.Core.DTOs;
 using Tymish.Core.Interfaces;
 
 namespace Tymish.Core.UseCases

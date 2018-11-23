@@ -8,14 +8,34 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
+using Tymish.Core.DTOs;
+using Tymish.Core.Interfaces;
+
 namespace Tymish.Infrastructure.Authentication
 {
-    public class AuthenticationUtility
+    public class AuthenticationUtility : IAuthenticator<IdentityUser>
     {
         private readonly IConfiguration _configuration;
 
         public AuthenticationUtility(IConfiguration configuration)
             => _configuration = configuration;
+
+
+        public string Login(LoginDTO user)
+        {
+            return "";
+        }
+
+        public void Logout(LoginDTO user)
+        {
+
+        }
+
+        public IdentityUser RegisterUser(IdentityUser user)
+        {
+            return new IdentityUser();
+        }
+
 
         public object GenerateJwtToken(string userName, IdentityUser user)
         {   

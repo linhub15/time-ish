@@ -1,4 +1,4 @@
-namespace Tymish.Core.Entities
+namespace Tymish.Core.DTOs
 {
     public class RegisterAdminDTO
     {
