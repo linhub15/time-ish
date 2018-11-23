@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 using Tymish.Core.Entities;
-using Tymish.Infrastructure.Configuration;
+using Tymish.Infrastructure.DataAccess.Configuration;
 
 namespace Tymish.Infrastructure.DataAccess
 {

@@ -1,12 +1,6 @@
 namespace Tymish.Core.Entities
 {
-    public class Login
-    {
-        public string userName;
-        public string password;
-    }
-
-    public class Register
+    public class RegisterAdminDTO
     {
         public string userName;
         public string email;

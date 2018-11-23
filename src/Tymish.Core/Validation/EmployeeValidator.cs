@@ -1,7 +1,7 @@
 using FluentValidation;
 using Tymish.Core.Entities;
 
-namespace Tymish.Api.Validation
+namespace Tymish.Core.Validation
 {
     public class EmployeeValidator : AbstractValidator<Employee>
     {

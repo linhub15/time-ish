@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using Tymish.Core.Entities;
 
-namespace Tymish.Infrastructure.Configuration
+namespace Tymish.Infrastructure.DataAccess.Configuration
 {
     public class EmployeeConfiguration: IEntityTypeConfiguration<Employee>
     {

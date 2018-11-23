@@ -1,20 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System;
 using Microsoft.Extensions.Configuration;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 
 // Project References
-using Tymish.Infrastructure.DataAccess;
 using Tymish.Core.Entities;
+using Tymish.Infrastructure.DataAccess;
+using Tymish.Infrastructure.Authentication;
 
 namespace Tymish.Api.Controllers
 {
@@ -26,16 +26,20 @@ namespace Tymish.Api.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly AuthenticationUtility _authUtil;
+
         public AuthController(
             TimeishContext context, 
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            AuthenticationUtility authUtil)
         {
             _context = context;
             _signInManager = signInManager;
             _userManager = userManager;
             _configuration = configuration;
+            _authUtil = authUtil;
         }
 
         [Authorize]
@@ -54,7 +58,7 @@ namespace Tymish.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<object> Login([FromBody] Login login)
+        public async Task<object> Login([FromBody] LoginDTO login)
         {
             TryValidateModel(login);
             
@@ -63,39 +67,14 @@ namespace Tymish.Api.Controllers
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(u => u.UserName == login.userName);
-                return await GenerateJwtToken(login.userName, appUser);
+                return  _authUtil.GenerateJwtToken(login.userName, appUser);
             }
 
             return result;
         }
 
-        [NonAction]
-        private async Task<object> GenerateJwtToken(string userName, IdentityUser user)
-        {
-
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, userName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
-            };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));
-
-            var token = new JwtSecurityToken(
-                _configuration["JwtIssuer"],
-                _configuration["JwtIssuer"],
-                claims,
-                expires: expires,
-                signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
         [HttpPost]
-        public ActionResult<object> Register([FromBody] Register register)
+        public ActionResult<object> Register([FromBody] RegisterAdminDTO register)
         {
             IdentityUser user = new IdentityUser
             {
