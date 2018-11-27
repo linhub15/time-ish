@@ -60,27 +60,14 @@ namespace Tymish.Api.Controllers
         public async Task<object> Login([FromBody] LoginDTO login)
         {
             TryValidateModel(login);
-            
-            var result = await _signInManager.PasswordSignInAsync(login.userName, login.password, false, false);
-
-            if (result.Succeeded)
-            {
-                var appUser = _userManager.Users.SingleOrDefault(u => u.UserName == login.userName);
-                return  _authUtil.GenerateJwtToken(login.userName, appUser);
-            }
-
-            return result;
+            return await _authUtil.SignIn(login);
         }
 
         [HttpPost]
         public ActionResult<object> Register([FromBody] RegisterAdminDTO register)
         {
-            IdentityUser user = new IdentityUser
-            {
-                UserName = register.userName,
-                Email = register.email
-            };
-            return _userManager.CreateAsync(user, register.password).Result;
+            TryValidateModel(register);
+            return _authUtil.RegisterAdmin(register);
         }
     }
 }

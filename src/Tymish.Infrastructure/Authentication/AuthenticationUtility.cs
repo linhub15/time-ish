@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,34 +11,57 @@ using Microsoft.IdentityModel.Tokens;
 
 using Tymish.Core.DTOs;
 using Tymish.Core.Interfaces;
+using Tymish.Infrastructure.DataAccess;
 
 namespace Tymish.Infrastructure.Authentication
 {
     public class AuthenticationUtility : IAuthenticator<IdentityUser>
     {
+        private readonly TimeishContext _context;
         private readonly IConfiguration _configuration;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public AuthenticationUtility(IConfiguration configuration)
-            => _configuration = configuration;
-
-
-        public string Login(LoginDTO user)
+        public AuthenticationUtility(
+            IConfiguration configuration,
+            TimeishContext context,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
-            return "";
+            _configuration = configuration;
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        } 
+
+        public async Task<object> SignIn(LoginDTO user)
+        {
+            var result = await _signInManager.PasswordSignInAsync(user.userName, user.password, false, false);
+            if (result.Succeeded)
+            {
+                var appUser = _userManager.Users.SingleOrDefault(u => u.UserName == user.userName);
+                return GenerateJwtToken(user.userName, appUser);
+            }
+            return result;
         }
 
-        public void Logout(LoginDTO user)
+        public void SignOut(LoginDTO user)
         {
 
         }
 
-        public IdentityUser RegisterUser(IdentityUser user)
+        public async Task<object> RegisterAdmin(RegisterAdminDTO admin)
         {
-            return new IdentityUser();
+           IdentityUser user = new IdentityUser
+            {
+                UserName = admin.userName,
+                Email = admin.email
+            };
+            return await _userManager.CreateAsync(user, admin.password);
         }
 
 
-        public object GenerateJwtToken(string userName, IdentityUser user)
+        private object GenerateJwtToken(string userName, IdentityUser user)
         {   
             var claims = new List<Claim>
             {
