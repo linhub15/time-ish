@@ -5,7 +5,7 @@ namespace Tymish.Core.Interfaces
 {
     public interface IAuthenticator<T>
     {
-        Task<object> SignIn(LoginDTO user);
+        Task<string> SignIn(LoginDTO user); // returns JWT
         void SignOut(LoginDTO user);
         Task<object> RegisterAdmin(RegisterAdminDTO user);
     }

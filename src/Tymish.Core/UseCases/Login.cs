@@ -17,7 +17,7 @@ namespace Tymish.Core.UseCases
 
         public string Execute(LoginDTO userCredentials)
         {
-            string JwtToken = (string)_authenticator.SignIn(userCredentials).Result;
+            string JwtToken = _authenticator.SignIn(userCredentials).Result;
             return JwtToken;
         }
     }

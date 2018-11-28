@@ -34,15 +34,18 @@ namespace Tymish.Infrastructure.Authentication
             _signInManager = signInManager;
         } 
 
-        public async Task<object> SignIn(LoginDTO user)
+        public async Task<string> SignIn(LoginDTO user)
         {
-            var result = await _signInManager.PasswordSignInAsync(user.userName, user.password, false, false);
+            SignInResult result = await _signInManager.PasswordSignInAsync(user.userName, user.password, false, false);
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(u => u.UserName == user.userName);
-                return GenerateJwtToken(user.userName, appUser);
+                return GenerateJwt(user.userName, appUser);
             }
-            return result;
+            else 
+            {
+                return "Sign in failed";
+            }
         }
 
         public void SignOut(LoginDTO user)
@@ -61,7 +64,7 @@ namespace Tymish.Infrastructure.Authentication
         }
 
 
-        private object GenerateJwtToken(string userName, IdentityUser user)
+        private string GenerateJwt(string userName, IdentityUser user)
         {   
             var claims = new List<Claim>
             {
