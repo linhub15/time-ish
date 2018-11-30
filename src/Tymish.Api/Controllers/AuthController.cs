@@ -23,21 +23,15 @@ namespace Tymish.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly TimeishContext _context;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly AuthenticationUtility _authUtil;
 
         public AuthController(
             TimeishContext context, 
-            SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager,
             IConfiguration configuration,
             AuthenticationUtility authUtil)
         {
             _context = context;
-            _signInManager = signInManager;
-            _userManager = userManager;
             _configuration = configuration;
             _authUtil = authUtil;
         }
