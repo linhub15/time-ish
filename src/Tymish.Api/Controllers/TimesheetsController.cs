@@ -16,16 +16,25 @@ namespace Tymish.Api.Controllers
         private readonly TimeishContext _context;
         private readonly IListTimeSheets _listTimeSheets;
         private readonly IGetTimeSheet _getTimeSheet;
+        private readonly IAddTimeSheet _addTimesheet;
+        private readonly IUpdateTimeSheet _updateTimeSheet;
+        private readonly IDeleteTimeSheet _deleteTimeSheet;
 
         public TimeSheetsController(
             TimeishContext context, 
             IListTimeSheets listTimeSheets,
-            IGetTimeSheet getTimeSheet)
+            IGetTimeSheet getTimeSheet,
+            IAddTimeSheet addTimeSheet,
+            IUpdateTimeSheet updateTimeSheet,
+            IDeleteTimeSheet deleteTimeSheet)
         
         {
             _context = context;
             _listTimeSheets = listTimeSheets;
             _getTimeSheet = getTimeSheet;
+            _addTimesheet = addTimeSheet;
+            _updateTimeSheet = updateTimeSheet;
+            _deleteTimeSheet = deleteTimeSheet;
         }
 
         // GET api/TimeSheets
@@ -40,12 +49,6 @@ namespace Tymish.Api.Controllers
         public ActionResult<TimeSheet> Get(int id)
         {
             return _getTimeSheet.Execute(id);
-            // return _context.TimeSheets
-            //     .Include(t => t.PayPeriod)
-            //     .Include(t => t.Activities)
-            //     .Include(t => t.Employee)   // use name & HourlyPay
-            //     .SingleOrDefault(t => t.Id == id);
-                
         }
 
          // POST api/TimeSheets
@@ -53,12 +56,8 @@ namespace Tymish.Api.Controllers
         public ActionResult<TimeSheet> Post([FromBody] TimeSheet timeSheet)
         {
             TryValidateModel(timeSheet);
-            _context.TimeSheets.Add(timeSheet);
-            _context.SaveChanges();
-            return _context.TimeSheets
-                .Include(t => t.Employee)
-                .Include(t => t.Activities)
-                .SingleOrDefault(t => t.Id == timeSheet.Id);
+            _addTimesheet.Execute(timeSheet);
+            return _getTimeSheet.Execute(timeSheet.Id);
         }
 
         // PUT api/TimeSheets/5
@@ -67,19 +66,15 @@ namespace Tymish.Api.Controllers
         {
             timeSheet.Id = id; //URL ID overrides PUT request Body
             TryValidateModel(timeSheet);
-            _context.TimeSheets.Update(timeSheet);
-            _context.SaveChanges();
-            return _context.TimeSheets.SingleOrDefault(t => t.Id == id);
+            _updateTimeSheet.Execute(timeSheet);
+            return _getTimeSheet.Execute(timeSheet.Id);
         }
 
         // DELETE api/TimeSheets/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var timeSheet = _context.TimeSheets
-                .SingleOrDefault(t => t.Id == id);
-            _context.TimeSheets.Remove(timeSheet);
-            _context.SaveChanges();
+            _deleteTimeSheet.Execute(id);
         }
 
         [HttpDelete("activities/{id}")]
