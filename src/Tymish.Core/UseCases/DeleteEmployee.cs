@@ -7,8 +7,8 @@ namespace Tymish.Core.UseCases
 
     public class DeleteEmployee : BaseUseCase, IDeleteEmployee
     {
-        public DeleteEmployee(Employee employee,
-            IRepository repository) : base(repository) { }
+        public DeleteEmployee(IRepository repository) 
+            : base(repository) { }
 
         public bool Execute(int id)
         {

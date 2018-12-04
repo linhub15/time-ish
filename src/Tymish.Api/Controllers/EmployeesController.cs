@@ -15,7 +15,7 @@ namespace Tymish.Api.Controllers
     {
         private readonly IGetEmployee _getEmployee;
         private readonly IListEmployees _listEmployees;
-        private readonly IAddEmployee _addEmpoloyee;
+        private readonly IAddEmployee _addEmployee;
         private readonly IUpdateEmployee _updateEmployee;
         private readonly IDeleteEmployee _deleteEmployee;
 
@@ -28,7 +28,7 @@ namespace Tymish.Api.Controllers
         {
             _getEmployee = getEmployee;
             _listEmployees = listEmployees;
-            _addEmpoloyee = addEmployee;
+            _addEmployee = addEmployee;
             _updateEmployee = updateEmployee;
             _deleteEmployee = deleteEmployee;
         }
@@ -37,7 +37,7 @@ namespace Tymish.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Employee>> Get()
         {
-            return _listEmployees.Execute(null);
+            return _listEmployees.Execute(null).ToList();
         }
 
         // GET api/employees/:id
@@ -52,7 +52,7 @@ namespace Tymish.Api.Controllers
         public ActionResult<Employee> Post([FromBody] Employee employee)
         {
             TryValidateModel(employee);
-            return _addEmpoloyee.Execute(employee).Data;
+            return _addEmployee.Execute(employee).Data;
         }
 
         // PUT api/employees/:id

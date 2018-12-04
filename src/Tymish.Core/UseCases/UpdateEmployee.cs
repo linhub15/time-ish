@@ -7,8 +7,8 @@ namespace Tymish.Core.UseCases
 
     public class UpdateEmployee : BaseUseCase, IUpdateEmployee
     {
-        public UpdateEmployee(Employee employee,
-            IRepository repository) : base(repository) { }
+        public UpdateEmployee(IRepository repository) 
+            : base(repository) {}
 
         public bool Execute(Employee employee)
         {

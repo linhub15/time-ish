@@ -22,9 +22,9 @@ namespace Tymish.Infrastructure.DataAccess
             return _context.Set<T>().SingleOrDefault(e => e.Id == id);
         }
 
-        public List<T> List<T>() where T : BaseEntity
+        public IQueryable<T> List<T>() where T : BaseEntity
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>();
         }
 
         public T Add<T>(T entity) where T : BaseEntity

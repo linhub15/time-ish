@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using Tymish.Core.Entities;
+using Tymish.Core.UseCases;
 using Tymish.Infrastructure.DataAccess;
 
 namespace Tymish.Api.Controllers 
@@ -13,20 +14,24 @@ namespace Tymish.Api.Controllers
     public class TimeSheetsController : ControllerBase
     {
         private readonly TimeishContext _context;
-        public TimeSheetsController(TimeishContext context)
+        private readonly IListTimeSheets _listTimeSheets;
+
+        public TimeSheetsController(TimeishContext context, IListTimeSheets listTimeSheets)
         {
             _context = context;
+            _listTimeSheets = listTimeSheets;
         }
 
         // GET api/TimeSheets
         [HttpGet]
         public ActionResult<IEnumerable<TimeSheet>> Get()
         {
-            return _context.TimeSheets
-                .Include(t => t.PayPeriod)
-                .Include(t => t.Activities)
-                .Include(t => t.Employee)   // use name & HourlyPay
-                .ToList();
+            return _listTimeSheets.Execute(null).ToList();
+            // return _context.TimeSheets
+            //     .Include(t => t.PayPeriod)
+            //     .Include(t => t.Activities)
+            //     .Include(t => t.Employee)   // use name & HourlyPay
+            //     .ToList();
         }
         
         // GET api/TimeSheets/5

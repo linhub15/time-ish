@@ -90,6 +90,8 @@ namespace Tymish
             services.AddScoped<IAddEmployee, AddEmployee>();
             services.AddScoped<IUpdateEmployee, UpdateEmployee>();
             services.AddScoped<IDeleteEmployee, DeleteEmployee>();
+
+            services.AddScoped<IListTimeSheets, ListTimeSheets>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, TimeishContext context)
