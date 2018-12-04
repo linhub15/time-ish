@@ -15,11 +15,17 @@ namespace Tymish.Api.Controllers
     {
         private readonly TimeishContext _context;
         private readonly IListTimeSheets _listTimeSheets;
+        private readonly IGetTimeSheet _getTimeSheet;
 
-        public TimeSheetsController(TimeishContext context, IListTimeSheets listTimeSheets)
+        public TimeSheetsController(
+            TimeishContext context, 
+            IListTimeSheets listTimeSheets,
+            IGetTimeSheet getTimeSheet)
+        
         {
             _context = context;
             _listTimeSheets = listTimeSheets;
+            _getTimeSheet = getTimeSheet;
         }
 
         // GET api/TimeSheets
@@ -27,22 +33,18 @@ namespace Tymish.Api.Controllers
         public ActionResult<IEnumerable<TimeSheet>> Get()
         {
             return _listTimeSheets.Execute(null).ToList();
-            // return _context.TimeSheets
-            //     .Include(t => t.PayPeriod)
-            //     .Include(t => t.Activities)
-            //     .Include(t => t.Employee)   // use name & HourlyPay
-            //     .ToList();
         }
         
         // GET api/TimeSheets/5
         [HttpGet("{id}")]
         public ActionResult<TimeSheet> Get(int id)
         {
-            return _context.TimeSheets
-                .Include(t => t.PayPeriod)
-                .Include(t => t.Activities)
-                .Include(t => t.Employee)   // use name & HourlyPay
-                .SingleOrDefault(t => t.Id == id);
+            return _getTimeSheet.Execute(id);
+            // return _context.TimeSheets
+            //     .Include(t => t.PayPeriod)
+            //     .Include(t => t.Activities)
+            //     .Include(t => t.Employee)   // use name & HourlyPay
+            //     .SingleOrDefault(t => t.Id == id);
                 
         }
 

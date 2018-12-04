@@ -19,7 +19,8 @@ namespace Tymish.Infrastructure.DataAccess
 
         public T Get<T>(int id) where T : BaseEntity
         {
-            return _context.Set<T>().SingleOrDefault(e => e.Id == id);
+            return _context.Set<T>()
+                .SingleOrDefault(e => e.Id == id);
         }
 
         public IQueryable<T> List<T>() where T : BaseEntity
