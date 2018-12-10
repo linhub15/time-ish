@@ -19,6 +19,8 @@ namespace Tymish.Api.Controllers
         private readonly IAddTimeSheet _addTimesheet;
         private readonly IUpdateTimeSheet _updateTimeSheet;
         private readonly IDeleteTimeSheet _deleteTimeSheet;
+        private readonly IDeleteActivity _deleteActivity;
+        
 
         public TimeSheetsController(
             TimeishContext context, 
@@ -26,7 +28,8 @@ namespace Tymish.Api.Controllers
             IGetTimeSheet getTimeSheet,
             IAddTimeSheet addTimeSheet,
             IUpdateTimeSheet updateTimeSheet,
-            IDeleteTimeSheet deleteTimeSheet)
+            IDeleteTimeSheet deleteTimeSheet,
+            IDeleteActivity deleteActivity)
         
         {
             _context = context;
@@ -35,6 +38,7 @@ namespace Tymish.Api.Controllers
             _addTimesheet = addTimeSheet;
             _updateTimeSheet = updateTimeSheet;
             _deleteTimeSheet = deleteTimeSheet;
+            _deleteActivity = deleteActivity;
         }
 
         // GET api/TimeSheets
@@ -72,18 +76,17 @@ namespace Tymish.Api.Controllers
 
         // DELETE api/TimeSheets/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             _deleteTimeSheet.Execute(id);
+            return Ok();
         }
 
         [HttpDelete("activities/{id}")]
-        public void DeleteActivity(int id)
+        public ActionResult DeleteActivity(int id)
         {
-            var activity = _context.Activities
-                .SingleOrDefault(a => a.Id == id);
-            _context.Activities.Remove(activity);
-            _context.SaveChanges();
+            _deleteActivity.Execute(id);
+            return Ok();
         }
     }
 }
