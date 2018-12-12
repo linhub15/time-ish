@@ -35,6 +35,7 @@ namespace test
             var result = mockAddEmployee.Object.Execute(employee);
 
             mockAddEmployee.Verify(e => e.Execute(employee));
+            Assert.Equal<Employee>(result.Data, employeeWithId);
 
         }
     }
