@@ -4,27 +4,38 @@ using Moq;
 using Tymish.Core.Entities;
 using Tymish.Core.UseCases;
 using Tymish.Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Tymish.Infrastructure.DataAccess;
 
 namespace test
 {
     public class Employees
     {
         [Fact]
-        public void CanAddEmployee(
-            IAddEmployee addEmployee, IRepository repository)
+        public void AddEmployee_UseCase()
         {
-        //Given an employee
-        Employee employee = new Employee {
-            FirstName = "Kazuto",
-            LastName = "Kirigaya",
-            Email = "Kirito@sao.com",
-            HourlyPay = 25
-        };
-        //When adding employee
-        addEmployee.Execute(employee);
+            Employee employee = new Employee {
+                FirstName = "Kazuto",
+                LastName = "Kirigaya",
+                Email = "Kirito@sao.com",
+                HourlyPay = 25
+            };
 
-        //Then
-        Assert.True(employee.Id != 0);
+            Employee employeeWithId = employee;
+            employeeWithId.Id = 1;
+
+            AddEmployeeResponse response = new AddEmployeeResponse {
+                Data = employeeWithId
+            };
+
+            var mockAddEmployee = new Mock<IAddEmployee>();
+
+            mockAddEmployee.Setup(m => m.Execute(employee)).Returns(response);
+
+            var result = mockAddEmployee.Object.Execute(employee);
+
+            mockAddEmployee.Verify(e => e.Execute(employee));
+
         }
     }
 }
