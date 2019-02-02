@@ -4,11 +4,11 @@
 Before building the project ensure all tools and dependencies are installed.
 
 ### Setup MySql Database Instance (Dev)
-User Name: `efuser`
-Host: `localhost`
-Role: `DB Manager`
-Authentication: `MySQL`
-Password: `password`
+* User Name: `efuser`
+* Host: `localhost`
+* Role: `DB Manager`
+* Authentication: `MySQL`
+* Password: `password`
 * Connection string `Server=localhost;Port=3306;Database=timeish;Uid=efuser;Pwd=password;`
 
 ### Entity Framework Code First Migration Commands
