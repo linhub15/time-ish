@@ -1,34 +1,15 @@
-# Timeish API- A Small Business Time Sheet Management Web App
+# Tymish API
+[Back to Tymish.github.io](https://tymish.github.io)
 
-Timeish Angular App [here](https://github.com/linhub15/timeish-app) - Consumes this API
+Before building the project ensure all tools and dependencies are installed.
 
-Before building the project ensure all dependencies are installed.
-
-1. Build the Angular App `ng build --prod`
-2. Copy the files into  `/timeish-api/wwwroot/`
-    * by default wwwroot/ is ignored from git, you will need to add it
-
-Then run the C# debugger. The VSCode `launch.json` should build and run the C# web api and serve the static angular app.
-
-## Project Dependencies
-* Microsoft .NET Core v2.1
-* Microsoft Entity Framework Core v2.1.4
-* MySql v8.0.12
-* Node.js v8.11.4
-* Angular Cli v7.0.0
-
-
-## Tools
-* VSCode - Editor
-* MySql Workbench 8 - Database GUI
-* Postman - API Testing
-* Chrome - when using `ng serve` make sure to enable `chrome://flags/#allow-insecure-localhost`
-
-## Dev DB
-### MySql Database Instance (Dev)
-* Username: efuser
-* Password: password
-* Connection string found in `/api/appsettings.json`
+### Setup MySql Database Instance (Dev)
+User Name: `efuser`
+Host: `localhost`
+Role: `DB Manager`
+Authentication: `MySQL`
+Password: `password`
+* Connection string `Server=localhost;Port=3306;Database=timeish;Uid=efuser;Pwd=password;`
 
 ### Entity Framework Code First Migration Commands
 * To Clear database
