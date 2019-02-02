@@ -15,7 +15,12 @@ Before building the project ensure all tools and dependencies are installed.
 * Password: `password`
 * Connection string `Server=localhost;Port=3306;Database=timeish;Uid=efuser;Pwd=password;`
 
-### Entity Framework Code First Migration Commands
+### Build and run API
+Once you have to project open in VS Code `F5` will automatically build and run.
+* It should be running on localhost:5001
+* Test the app by opening chrome and navigate to `https://localhost:5001/api/employees`
+
+### Entity Framework Code First Migration Commands (For code changes that affect schema)
 * To Clear database
   * Drop all tables in MySql work bench
   * Delete /app/Migrations
