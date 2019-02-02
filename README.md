@@ -3,6 +3,10 @@
 
 Before building the project ensure all tools and dependencies are installed.
 
+1. Install MySQL Server
+2. Setup the application user
+3. Run the database script
+
 ### Setup MySql Database Instance (Dev)
 * User Name: `efuser`
 * Host: `localhost`
