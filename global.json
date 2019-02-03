@@ -1,0 +1,8 @@
+{
+    "projects": [
+        "src",
+        "test",
+        "C:/Users/hubert.lin/GitHub/Tymish/api"
+    ],
+    "sdk": { "version": "2.1.403" }
+}
