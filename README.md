@@ -19,6 +19,7 @@ Before building the project ensure all tools and dependencies are installed.
 Once you have to project open in VS Code `F5` will automatically build and run.
 * It should be running on localhost:5001
 * Test the app by opening chrome and navigate to `https://localhost:5001/api/employees`
+* Test the other endpoints on the API with Postman
 
 ### Entity Framework Code First Migration Commands (For code changes that affect schema)
 * To Clear database
