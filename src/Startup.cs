@@ -96,6 +96,7 @@ namespace Tymish
             services.AddScoped<IAddTimeSheet, AddTimeSheet>();
             services.AddScoped<IUpdateTimeSheet, UpdateTimeSheet>();
             services.AddScoped<IDeleteTimeSheet, DeleteTimeSheet>();
+            services.AddScoped<IDeleteActivity, DeleteActivity>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, TimeishContext context)
