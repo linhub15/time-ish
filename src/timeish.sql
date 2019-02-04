@@ -1,4 +1,5 @@
 CREATE SCHEMA  `Timeish` ;
+USE `Timeish` ;
 CREATE TABLE `Employees` (
     `Id` int NOT NULL AUTO_INCREMENT,
     `FirstName` varchar(25) NOT NULL,
