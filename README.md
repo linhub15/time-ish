@@ -16,7 +16,10 @@ Before building the project ensure all tools and dependencies are installed.
 * Connection string `Server=localhost;Port=3306;Database=timeish;Uid=efuser;Pwd=password;`
 
 ### Build and run API
-Once you have to project open in VS Code `F5` will automatically build and run.
+Once you have to project open in VS Code
+* `cd src`
+* `dotnet build`
+* `dotnet run --launch-profile api`
 * It should be running on localhost:5001
 * Test the app by opening chrome and navigate to `https://localhost:5001/api/employees`
 * Test the other endpoints on the API with Postman
